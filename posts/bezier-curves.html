@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Beizer Curves-sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Beizer Curves" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post we understand how to get a point in a Bezier curve. These curves are about interpolation, the most used ones are cubic beziers since they can be really good optimized." />
+<meta property="og:description" content="In this post we understand how to get a point in a Bezier curve. These curves are about interpolation, the most used ones are cubic beziers since they can be really good optimized." />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/posts/bezier-curves.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/posts/bezier-curves.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-06T19:56:49-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Beizer Curves" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-11-06T19:56:49-04:00","datePublished":"2021-11-06T19:56:49-04:00","description":"In this post we understand how to get a point in a Bezier curve. These curves are about interpolation, the most used ones are cubic beziers since they can be really good optimized.","headline":"Beizer Curves","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/posts/bezier-curves.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/posts/bezier-curves.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <!-- SUPPORT FOR JUPYTER NOTEBOOKS -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/notebook.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/colorful.css">
+
+<!-- SUPPORT FOR LATEX -->
+
+<script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+type="text/javascript">
+</script>
+
+
+<h1>Beizer Curves</h1>
+
+<!-- PAGE CATEGORIES -->
+
+<hr>
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=blog';">
+        blog
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=spline';">
+        spline
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=bezier';">
+        bezier
+    </button> 
+
+
+
+<hr>
+
+<p>In this post we understand how to get a point in a Bezier curve. 
+These curves are about interpolation, the most used ones are cubic beziers
+since they can be really good optimized.<!--more--> Given an interpolation parameter t, 
+the coordinates of the respective points can be calculated with a concrete formula.</p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li>t: the interpolation state [0 - 1]</li>
+  <li>w: weight values in the same dimensions, all x coordinate values, for example.</li>
+</ul>
+
+<p>This simple function returns the point coordinate for the interpolation value.
+However, notice the output and weights are floats, what means that we are constructing 
+the curve for each coordinate independently, {X, Y, Z}</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">public</span> <span class="n">static</span> <span class="n">float</span> <span class="no">Bezier_3</span> <span class="p">(</span><span class="n">float</span> <span class="n">t</span><span class="p">,</span> <span class="n">float</span><span class="p">[]</span> <span class="n">w</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="no">Length</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kp">throw</span> <span class="n">new</span> <span class="no">ArgumentException</span> <span class="p">(</span><span class="s2">"List should have 4 points to be a cubic bezier"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">float</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span>
+  <span class="n">float</span> <span class="n">t3</span> <span class="o">=</span> <span class="n">t2</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span>
+  <span class="n">float</span> <span class="n">mt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">;</span>
+  <span class="n">float</span> <span class="n">mt2</span> <span class="o">=</span> <span class="n">mt</span> <span class="o">*</span> <span class="n">mt</span><span class="p">;</span>
+  <span class="n">float</span> <span class="n">mt3</span> <span class="o">=</span> <span class="n">mt2</span> <span class="o">*</span> <span class="n">mt</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">mt3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">mt2</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">mt</span><span class="o">*</span><span class="n">t2</span> <span class="o">+</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">t3</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Once the parameters are independent from the world-space, we can better optimize and 
+generate concrete bezier functions for 2D or 3D space. Have a detail look on how the 
+previous function is used to construct the curve for 3D space. Now, if the use case is 
+a simple 2D space, we can remove the correspondent weights from the {Z} coordinate.
+Notice that a reasonable computation time is saved.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">public</span> <span class="n">static</span> <span class="no">Vector3</span> <span class="n">getPoint</span><span class="p">(</span><span class="no">List</span><span class="o">&lt;</span><span class="no">Vector3</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">,</span> <span class="n">float</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="no">Count</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kp">throw</span> <span class="n">new</span> <span class="no">ArgumentException</span> <span class="p">(</span><span class="s2">"List should have 4 points to be a cubic bezier"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">float</span><span class="p">[]</span> <span class="n">w_x</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span> <span class="n">float</span><span class="p">[]</span> <span class="n">w_y</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span> <span class="n">float</span><span class="p">[]</span> <span class="n">w_z</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+
+  <span class="n">decompose_weight</span> <span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">ref</span> <span class="n">w_x</span><span class="p">,</span> <span class="n">ref</span> <span class="n">w_y</span><span class="p">,</span> <span class="n">ref</span> <span class="n">w_z</span><span class="p">);</span>
+
+  <span class="n">float</span> <span class="n">x</span> <span class="o">=</span> <span class="no">Bezier_3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_x</span><span class="p">);</span>
+  <span class="n">float</span> <span class="n">y</span> <span class="o">=</span> <span class="no">Bezier_3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_y</span><span class="p">);</span>
+  <span class="n">float</span> <span class="n">z</span> <span class="o">=</span> <span class="no">Bezier_3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_z</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">new</span> <span class="no">Vector3</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The decompose weights instructions just reorganizes the List<Vector3> {X;Y;Z} components into
+separated lists containing the individual space coordinate for each one.</Vector3></p>
+
+
+
+<!-- INCLUDE spline / procedural -->
+
+
+
+  <hr>
+      <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
+
+<h3>Welcome to the spline-lab !</h3>
+
+<p>
+Check out the following <a href="https://youtube.com/playlist?list=PLnQ9Bb3_obbQ_ULwPaLz6DLPPUxc20fHN">playlist</a>  to see what the spline-lab is doing with lines and curves.
+Some of the listed videos contain motion graphics and animations within the lines framework.
+</p>
+
+
+
+<ul class="images"> 
+
+    <!-- 
+
+        <li>
+            <img src="https://img.youtube.com/vi/bO-P0VUkrek/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+    
+
+        <li>
+            <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+    
+
+        <li>
+            <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+    
+
+        <li>
+            <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+    
+
+        <li>
+            <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+    
+
+        <li>
+            <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+        </li>
+
+     -->
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/breath-animation.html">
+                <img src="https://img.youtube.com/vi/qvJVax574-4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/organic-algorithms.html">
+                <img src="https://img.youtube.com/vi/Qizighc_74Y/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/motion-graphics.html">
+                <img src="https://img.youtube.com/vi/OeRz6bf5gp8/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/demo_reel-AAA.html">
+                <img src="https://img.youtube.com/vi/ggb8ZFBzjCs/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+</ul>
+  <hr>
+
+
+
+
+
+<!-- RELATED POSTS -->
+
+<h3>Related Posts</h3>
+
+
+
+<div class="child">
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/NeRF_ficus.html">NeRF - A concrete example, Ficus</a>
+    <p>2023-04-05 18:00:00 -0400</p>
+    <p> explicación inicial, hace falta algo de texto 
+
+</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/LOF-outlier-pipeline.html">LOF Outlier Imblearn Pipeline</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-11-LOF-outlier-pipeline In this post we examine how to append a local outlier factor method to a regular pipeline, but using imblearn ones. Lets review how to use pipelines when the shape of the dataset need to be modified, such as with outlier removal. In&nbsp;[17]: import pandas as pd import numpy...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/polinomial-iterpolation.html">Polynomial Interpolation</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-04-polinomial-iterpolation Since many of the things that we do in the blog are about splines, in this post we're going to cover how to fit polynomials and splines to random scatter points. We'll use some of the basic scikit-learn functionality to avoid implementing the polynomial transformations from scratch. In this...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/jekyll-build-config.html">Jekyll Build Config</a>
+    <p>2022-12-18 19:00:00 -0500</p>
+    <p>Jekyll is a powerfull tool for building static websites. Simple integration with github-pages, fast building process, multiple plug-ins to extend functionality, are some of the core features that makes it great. Let's see different techniques to create a solid webpage and speed-up the build process. # markdwon Markdown is a...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/django-jupyter-notebook.html">Django + Jupyter Notebooks</a>
+    <p>2022-12-16 19:00:00 -0500</p>
+    <p>In this post we explore how to combine the django framework with jupyter notebooks. Sometimes this way of executing code from within the app can be very usuful to test our models. The following code must be executed in the first cell of each notebook. {% highlight python %} #...</p>
+</div>
+            
+        <br>
+
+    
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

@@ -1,0 +1,26 @@
+.child_playlist {
+    margin: 0 auto;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ul.images {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    /* width: 900px; */
+    overflow-x: auto;
+}
+
+ul.images li {
+    display: inline-block;
+    width: 200px;
+    height: 113px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    border: 2px solid rgb(255, 43, 255);
+    border-radius: 10px;
+}

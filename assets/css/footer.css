@@ -1,0 +1,30 @@
+.footer{
+    padding: 10px;
+    text-align: center;
+    background: #1abc9c;
+    color: rgb(255, 255, 255);;
+    font-size: 12px;
+
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    /* background-color: #2196F3; */
+    /* padding: 10px; */
+    }
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0px 10px;
+    font-size: 14px;
+    text-align:left;
+    }
+
+    /* .item4 {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    } */

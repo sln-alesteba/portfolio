@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Plain-Textures Procedural Terrain-sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Plain-Textures Procedural Terrain" />
+<meta name="author" content="alesteba" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Endless procedural generation in the context of hill racing games. Using procedural content algorithms for line generation and then create biomes along those lines." />
+<meta property="og:description" content="Endless procedural generation in the context of hill racing games. Using procedural content algorithms for line generation and then create biomes along those lines." />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/demos/plain-textures-procedural-terrain.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/demos/plain-textures-procedural-terrain.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-13T05:44:49-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Plain-Textures Procedural Terrain" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2021-10-13T05:44:49-04:00","datePublished":"2021-10-13T05:44:49-04:00","description":"Endless procedural generation in the context of hill racing games. Using procedural content algorithms for line generation and then create biomes along those lines.","headline":"Plain-Textures Procedural Terrain","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/demos/plain-textures-procedural-terrain.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/demos/plain-textures-procedural-terrain.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/" class="active">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <!-- SUPPORT FOR JUPYTER NOTEBOOKS -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/notebook.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/colorful.css">
+
+<!-- SUPPORT FOR LATEX -->
+
+<script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+type="text/javascript">
+</script>
+
+
+<h1>Plain-Textures Procedural Terrain</h1>
+
+<!-- PAGE CATEGORIES -->
+
+<hr>
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=demos';">
+        demos
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=procedural';">
+        procedural
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=generation';">
+        generation
+    </button> 
+
+
+
+<hr>
+
+<p>Endless procedural generation in the context of hill racing games. Using procedural content algorithms for line generation and then create biomes along those lines.</p>
+
+
+<div class="your-centered-div">
+
+    <!-- // page works -->
+
+    <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/0mUXEIhxy_I" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+
+</div>
+
+<!-- INCLUDE spline / procedural -->
+
+
+
+
+
+  <hr>
+      <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
+
+<h3>Procedural Content Generation !</h3>
+
+<p>
+    Some of the procedural content you find in the <a href="https://youtube.com/playlist?list=PLnQ9Bb3_obbQ_ULwPaLz6DLPPUxc20fHN">playlist</a> target 
+    endless generation within the platforms or terrain 2.5D context.
+    Also there is a bunch demos showing simple algorithms to extend lines using random seed approach.
+</p>
+
+
+
+<ul class="images"> 
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/demo_reel-AAA.html">
+                <img src="https://img.youtube.com/vi/ggb8ZFBzjCs/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/procedural-terrain-2D-gen.html">
+                <img src="https://img.youtube.com/vi/pztkXGKcxo0/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/plain-textures-procedural-terrain.html">
+                <img src="https://img.youtube.com/vi/0mUXEIhxy_I/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+        
+
+        <li>
+            <a href="https://sln-alesteba.github.io/portfolio/demos/endless-procedural-generation.html">
+                <img src="https://img.youtube.com/vi/Y200qbpGYvo/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+        </li>
+
+        
+
+    
+
+</ul>
+
+<!-- 
+
+    <iframe width="213.3" height="160" 
+            src="https://www.youtube.com/embed/bO-P0VUkrek" 
+            title="Title 01" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>
+
+
+
+    <iframe width="213.3" height="160" 
+            src="https://www.youtube.com/embed/C86LMpCzRI4" 
+            title="Title 02" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>
+
+
+
+    <iframe width="213.3" height="160" 
+            src="https://www.youtube.com/embed/C86LMpCzRI4" 
+            title="Title 03" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>
+
+ -->
+  <hr>
+
+
+
+<!-- RELATED POSTS -->
+
+<h3>Related Posts</h3>
+
+
+
+<div class="child">
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/openGL-transformations.html">Spline Transformations - Rendering OpenGL</a>
+    <p>2022-07-22 10:20:00 -0400</p>
+    <p>Rendering a spline shape with a dedicated graphics engine written in Python. The scene graph architecture allows to create a custom spline-shape geometry and then locally transform the entire object with the disered operations. All matrix and vector operations are abstracted by the framework, allowing to translate, rotate and scale...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-003.html">Audio Visualization sp.002</a>
+    <p>2021-12-05 04:44:49 -0500</p>
+    <p>Piano key strokes are more fun when you visualize in some form or another the sound produced.
+Closed spline shape rendered along this small piano track, notice the small fast waves the contour forms.
+Very pleasant effect that could be applied to many more music tracks like this.</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-002.html">Audio Visualization sp.002</a>
+    <p>2021-12-04 04:44:49 -0500</p>
+    <p>Everything you see in the video is generated at run-time. This time the audio visualizer uses 
+not just a simple mesh but a line renderer to distinguish the contour of the shape.
+The drums make the shape generate aggressive but very pleasant curves.  </p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-001.html">Audio Visualization sp.001</a>
+    <p>2021-12-03 04:44:49 -0500</p>
+    <p>This video demonstrates how frequency bands can be used to make dynamic meshes. The mesh is modified at real-time by a redial disposition of those bands. Notice that the code for this representation is being optimized since modifying a mesh every frame is an expensive task no matter how simple...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/breath-animation.html">Reel Showcase</a>
+    <p>2021-11-25 04:44:49 -0500</p>
+    <p>This time with breathing graphics, real time parallel processing for dynamic spline follow. Closed loop behavior algorithm allows to follow any closed line shape at a constant speed. One big challenge is keep the iteration distance independent from the actual spline path that we're iterating through. Stay tuned for more...</p>
+</div>
+            
+        <br>
+
+    
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

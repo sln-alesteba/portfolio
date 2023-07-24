@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Blog-Page 2 of 5 -sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Blog" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<meta property="og:description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/blog/page2/" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/blog/page2/" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="website" />
+<link rel="prev" href="https://sln-alesteba.github.io/portfolio/portfolio/" />
+<link rel="next" href="https://sln-alesteba.github.io/portfolio/portfolio/page3/" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Blog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!","headline":"Blog","url":"https://sln-alesteba.github.io/portfolio/portfolio/blog/page2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/" class="active">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <h2>Posts</h2>
+
+<hr>
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=demos';">
+            demos
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=procedural';">
+            procedural
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=generation';">
+            generation
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=blog';">
+            blog
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=spline';">
+            spline
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=lines';">
+            lines
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=interpolation';">
+            interpolation
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=bezier';">
+            bezier
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=audio';">
+            audio
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=visualization';">
+            visualization
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=data';">
+            data
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=jekyll';">
+            jekyll
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=python';">
+            python
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=git';">
+            git
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=integration';">
+            integration
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=render';">
+            render
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=openGL';">
+            openGL
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=graphics';">
+            graphics
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=rendering';">
+            rendering
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=architecture';">
+            architecture
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=pyhton';">
+            pyhton
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geometry';">
+            geometry
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=data-science';">
+            data-science
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=algorithms';">
+            algorithms
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=graph';">
+            graph
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=iterate';">
+            iterate
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=jupyter';">
+            jupyter
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=recursive';">
+            recursive
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=algorithm';">
+            algorithm
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=sofwtare-architecture';">
+            sofwtare-architecture
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=django';">
+            django
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=sofwtare';">
+            sofwtare
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=UML';">
+            UML
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=deep-learning';">
+            deep-learning
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=machine-learning';">
+            machine-learning
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=projects';">
+            projects
+        </button> 
+
+    
+
+<hr>
+
+<br>
+
+<div class="child">
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/clustering.html">Clustering & Dendograms Scikit-learn Python</a>
+    <p>2022-11-25 17:00:00 -0500</p>
+    <p>2022-11-25-clustering Agglomerative Clustering recursively merges pair of clusters of sample data; uses linkage distance. In this example we use the iris dataset to see how the algorithm performs with different parameters. The linkage criterion determines which distance to use between sets of observation. The algorithm will merge the pairs of...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/k-means-pll.html">K-Means Parallel Python Implementation</a>
+    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-11-13-k-means-pll This post explores the possibilities of a simple k-means implementation. The algorithm uses the center_asignment function with a parallel approach. Take a look at the github links below to see the code and then explore the call graphs for both serial and parallel executions. Python multiprocessing creates an important...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/recursive-graph-neighbours.html">Recursive Graph Neighbours</a>
+    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-11-12-graph-depth In&nbsp;[1]: import networkx as nx import matplotlib.pyplot as plt In&nbsp;[2]: G = nx.gnp_random_graph(100, 0.075, seed=None, directed=False) In&nbsp;[3]: nx.draw(G) In&nbsp;[4]: def neigh(G, node, depth): node_list = [] if depth==0: node_list.append(node) else: for neighbor in G.neighbors(node): node_list.append(node) node_list += neigh(G, neighbor, depth-1) return list(set(node_list)) In&nbsp;[5]: # For 10 random nodes, draw...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/map-filter-reduce-recursive.html">Recursive / Map - Filter - Reduce</a>
+    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-10-03-recursive-definitions In&nbsp;[&nbsp;]: def map_rec(f,l): if l == []: return l else: h = map_rec(f,l[1:]) h.insert(0,f(l[0])) return(h) In&nbsp;[&nbsp;]: def filter_rec(f, l): if l == []: return l else: h = filter_rec(f,l[1:]) if f(l[0]): h.insert(0,l[0]) return(h) In&nbsp;[&nbsp;]: def reduce_rec(f, l, s): if l == []: return l elif len(l) == 1: return...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/clousure-callback.html">Clousures as Callbacks</a>
+    <p>2022-10-02 20:00:00 -0400</p>
+    <p>2022-10-03-clousure-callback Clousere definition: In&nbsp;[&nbsp;]: def func1(): var = "Enclosed Function" def func2(): var = "Nested Function" print(var) return func2 res = func1() res Returning a function allows us to execute something previously defined when that process ends. Without actually defining a class, we can group the definition of a procedure...</p>
+</div>
+
+            <br>
+
+    
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/paginate.css"><div class="pages_nav"><a href="https://sln-alesteba.github.io/portfolio/blog//">
+                <button><</button>
+            </a><a href="https://sln-alesteba.github.io/portfolio/blog/">
+                    <button>1</button>
+                </a><button>2</button><a href="https://sln-alesteba.github.io/portfolio/blog/page3">
+                    <button>3</button>
+                </a><a href="https://sln-alesteba.github.io/portfolio/blog/page4">
+                    <button>4</button>
+                </a><a href="https://sln-alesteba.github.io/portfolio/blog/page5">
+                    <button>5</button>
+                </a><a href="https://sln-alesteba.github.io/portfolio/blog//page3/">
+                <button>></button>
+            </a></div>
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

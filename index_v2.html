@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="sln-alesteba:blog" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<meta property="og:description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/index_v2.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/index_v2.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="sln-alesteba:blog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!","headline":"sln-alesteba:blog","url":"https://sln-alesteba.github.io/portfolio/portfolio/index_v2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;li&gt;&lt;a href="/posts/NeRF_ficus.html"&gt;NeRF - A concrete example, Ficus&lt;/a&gt;&lt;/li&gt;
+
+NeRF - A concrete example, Ficus &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/LOF-outlier-pipeline.html"&gt;LOF Outlier Imblearn Pipeline&lt;/a&gt;&lt;/li&gt;
+
+LOF Outlier Imblearn Pipeline &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/polinomial-iterpolation.html"&gt;Polynomial Interpolation&lt;/a&gt;&lt;/li&gt;
+
+Polynomial Interpolation &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/jekyll-build-config.html"&gt;Jekyll Build Config&lt;/a&gt;&lt;/li&gt;
+
+Jekyll Build Config &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/django-jupyter-notebook.html"&gt;Django + Jupyter Notebooks&lt;/a&gt;&lt;/li&gt;
+
+Django + Jupyter Notebooks &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/clustering.html"&gt;Clustering &amp; Dendograms Scikit-learn Python&lt;/a&gt;&lt;/li&gt;
+
+Clustering &amp; Dendograms Scikit-learn Python &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/k-means-pll.html"&gt;K-Means Parallel Python Implementation&lt;/a&gt;&lt;/li&gt;
+
+K-Means Parallel Python Implementation &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/recursive-graph-neighbours.html"&gt;Recursive Graph Neighbours&lt;/a&gt;&lt;/li&gt;
+
+Recursive Graph Neighbours &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/map-filter-reduce-recursive.html"&gt;Recursive / Map - Filter - Reduce&lt;/a&gt;&lt;/li&gt;
+
+Recursive / Map - Filter - Reduce &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/clousure-callback.html"&gt;Clousures as Callbacks&lt;/a&gt;&lt;/li&gt;
+
+Clousures as Callbacks &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/hide-cells-jupyter-notebook-source.html"&gt;Hide Cells in Jupyter Notebook From Source&lt;/a&gt;&lt;/li&gt;
+
+Hide Cells in Jupyter Notebook From Source &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/latex-markdow-jekyll.html"&gt;LateX for markdown (.md) in Jekyll&lt;/a&gt;&lt;/li&gt;
+
+LateX for markdown (.md) in Jekyll &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/networkx-graph-traversal.html"&gt;NetworkX Graph Random Walk&lt;/a&gt;&lt;/li&gt;
+
+NetworkX Graph Random Walk &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/random-vector-within-cone.html"&gt;Random Vector within Cone&lt;/a&gt;&lt;/li&gt;
+
+Random Vector within Cone &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/openGL-transformations.html"&gt;Spline Transformations - Rendering OpenGL&lt;/a&gt;&lt;/li&gt;
+
+Spline Transformations - Rendering OpenGL &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/rendering_engine_architecture.html"&gt;Rendering Engine Architecture&lt;/a&gt;&lt;/li&gt;
+
+Rendering Engine Architecture &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/matrix_transformations.html"&gt;Matrix Transformation for Rendering 3D objects&lt;/a&gt;&lt;/li&gt;
+
+Matrix Transformation for Rendering 3D objects &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/git_automation.html"&gt;Git Commit Automation with Python&lt;/a&gt;&lt;/li&gt;
+
+Git Commit Automation with Python &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/plotly-web-export-HTML.html"&gt;Plotting Splines with Plotly and export into HTML&lt;/a&gt;&lt;/li&gt;
+
+Plotting Splines with Plotly and export into HTML &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/audio-visualization-003.html"&gt;Audio Visualization sp.002&lt;/a&gt;&lt;/li&gt;
+
+Audio Visualization sp.002 &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/audio-visualization-002.html"&gt;Audio Visualization sp.002&lt;/a&gt;&lt;/li&gt;
+
+Audio Visualization sp.002 &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/audio-visualization-001.html"&gt;Audio Visualization sp.001&lt;/a&gt;&lt;/li&gt;
+
+Audio Visualization sp.001 &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/breath-animation.html"&gt;Reel Showcase&lt;/a&gt;&lt;/li&gt;
+
+Reel Showcase &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/organic-algorithms.html"&gt;Organic Algorithms&lt;/a&gt;&lt;/li&gt;
+
+Organic Algorithms &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/motion-graphics.html"&gt;Motion Graphics&lt;/a&gt;&lt;/li&gt;
+
+Motion Graphics &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/demo_reel-AAA.html"&gt;Reel Showcase&lt;/a&gt;&lt;/li&gt;
+
+Reel Showcase &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/Casteljau's-Algorithm.html"&gt;Casteljau's Algorithm&lt;/a&gt;&lt;/li&gt;
+
+Casteljau's Algorithm &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/bezier-matrix.html"&gt;Beizer Matrix Form&lt;/a&gt;&lt;/li&gt;
+
+Beizer Matrix Form &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/bezier-curves.html"&gt;Beizer Curves&lt;/a&gt;&lt;/li&gt;
+
+Beizer Curves &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/posts/interpolation-spline.html"&gt;Interpoaltion in Graphics&lt;/a&gt;&lt;/li&gt;
+
+Interpoaltion in Graphics &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/procedural-terrain-2D-gen.html"&gt;Procedural Terrain 2D Generation&lt;/a&gt;&lt;/li&gt;
+
+Procedural Terrain 2D Generation &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/plain-textures-procedural-terrain.html"&gt;Plain-Textures Procedural Terrain&lt;/a&gt;&lt;/li&gt;
+
+Plain-Textures Procedural Terrain &lt;br&gt;
+
+
+
+&lt;li&gt;&lt;a href="/demos/endless-procedural-generation.html"&gt;Endless Procedural Generation&lt;/a&gt;&lt;/li&gt;
+
+Endless Procedural Generation &lt;br&gt;
+</code></pre></div></div>
+
+
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

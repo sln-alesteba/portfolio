@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Git Commit Automation with Python-sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Git Commit Automation with Python" />
+<meta name="author" content="waloncab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This web page is a small complex piece of software. There are a few layers that composes the web, having jekyll as the backend and standard html, css, and javascript on the front-end. Since jekyll is a lightweight static web page generator, the site has to be built before uploading it to any remote server. This is a very repetitive process that could be automated. In this blog post we are going to see a simple bash script to use git version control and upload the built web-page to github-pages. Steps executed by the script: use [ jekyll bundle build ] to build the web page into the _site folder. copy the _site folder to some other folder and start a git repository in there. automate the git commit with the following lines of code. The following lines specify the basic operations that can be done with your repository. Here, a random word function is being used to generate the commit identification message. The script is hardcoded for whis web-site folder structure, in case of using it modify it to fit your folders. #!/bin/bash # copy the files to the destination folder cp -r ./_site/* ../s.ln_blog_prod; # Save where you are and cd to other dir pushd ../s.ln_blog_prod; pwd; git add .; # list remote git remote -v; # random txt &amp; num randomTxt=$(cat /dev/urandom | tr -dc &#39;[:alpha:]&#39; | fold -w ${1:-4} | head -n 1); randomNum=$(cat /dev/urandom | tr -dc &#39;[:digit:]&#39; | fold -w ${1:-4} | head -n 1); echo $randomTxt; echo $randomNum; # create the commit git commit -m &quot;$randomTxt$randomNum&quot;; # has to be executed with sudo sudo git remote set-url origin git@github.com:waloncab/s.ln_blog; # push to github git push -f --set-upstream origin master; # get back where you were at the beginning. popd;" />
+<meta property="og:description" content="This web page is a small complex piece of software. There are a few layers that composes the web, having jekyll as the backend and standard html, css, and javascript on the front-end. Since jekyll is a lightweight static web page generator, the site has to be built before uploading it to any remote server. This is a very repetitive process that could be automated. In this blog post we are going to see a simple bash script to use git version control and upload the built web-page to github-pages. Steps executed by the script: use [ jekyll bundle build ] to build the web page into the _site folder. copy the _site folder to some other folder and start a git repository in there. automate the git commit with the following lines of code. The following lines specify the basic operations that can be done with your repository. Here, a random word function is being used to generate the commit identification message. The script is hardcoded for whis web-site folder structure, in case of using it modify it to fit your folders. #!/bin/bash # copy the files to the destination folder cp -r ./_site/* ../s.ln_blog_prod; # Save where you are and cd to other dir pushd ../s.ln_blog_prod; pwd; git add .; # list remote git remote -v; # random txt &amp; num randomTxt=$(cat /dev/urandom | tr -dc &#39;[:alpha:]&#39; | fold -w ${1:-4} | head -n 1); randomNum=$(cat /dev/urandom | tr -dc &#39;[:digit:]&#39; | fold -w ${1:-4} | head -n 1); echo $randomTxt; echo $randomNum; # create the commit git commit -m &quot;$randomTxt$randomNum&quot;; # has to be executed with sudo sudo git remote set-url origin git@github.com:waloncab/s.ln_blog; # push to github git push -f --set-upstream origin master; # get back where you were at the beginning. popd;" />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/posts/git_automation.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/posts/git_automation.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-20T11:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git Commit Automation with Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"waloncab"},"dateModified":"2022-07-20T11:00:00-04:00","datePublished":"2022-07-20T11:00:00-04:00","description":"This web page is a small complex piece of software. There are a few layers that composes the web, having jekyll as the backend and standard html, css, and javascript on the front-end. Since jekyll is a lightweight static web page generator, the site has to be built before uploading it to any remote server. This is a very repetitive process that could be automated. In this blog post we are going to see a simple bash script to use git version control and upload the built web-page to github-pages. Steps executed by the script: use [ jekyll bundle build ] to build the web page into the _site folder. copy the _site folder to some other folder and start a git repository in there. automate the git commit with the following lines of code. The following lines specify the basic operations that can be done with your repository. Here, a random word function is being used to generate the commit identification message. The script is hardcoded for whis web-site folder structure, in case of using it modify it to fit your folders. #!/bin/bash # copy the files to the destination folder cp -r ./_site/* ../s.ln_blog_prod; # Save where you are and cd to other dir pushd ../s.ln_blog_prod; pwd; git add .; # list remote git remote -v; # random txt &amp; num randomTxt=$(cat /dev/urandom | tr -dc &#39;[:alpha:]&#39; | fold -w ${1:-4} | head -n 1); randomNum=$(cat /dev/urandom | tr -dc &#39;[:digit:]&#39; | fold -w ${1:-4} | head -n 1); echo $randomTxt; echo $randomNum; # create the commit git commit -m &quot;$randomTxt$randomNum&quot;; # has to be executed with sudo sudo git remote set-url origin git@github.com:waloncab/s.ln_blog; # push to github git push -f --set-upstream origin master; # get back where you were at the beginning. popd;","headline":"Git Commit Automation with Python","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/posts/git_automation.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/posts/git_automation.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <!-- SUPPORT FOR JUPYTER NOTEBOOKS -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/notebook.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/colorful.css">
+
+<!-- SUPPORT FOR LATEX -->
+
+<script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+type="text/javascript">
+</script>
+
+
+<h1>Git Commit Automation with Python</h1>
+
+<!-- PAGE CATEGORIES -->
+
+<hr>
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=blog';">
+        blog
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=jekyll';">
+        jekyll
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=python';">
+        python
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=git';">
+        git
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=integration';">
+        integration
+    </button> 
+
+
+
+<hr>
+
+<p>This web page is a small complex piece of software. There are a few layers that composes the web, having jekyll as the backend and standard html, css, and javascript on the front-end. Since jekyll is a lightweight static web page generator, the site has to be built before uploading it to any remote server. This is a very repetitive process that could be automated. In this blog post we are going to see a simple bash script to use git version control and upload the built web-page to github-pages.</p>
+
+<p>Steps executed by the script:</p>
+
+<ul>
+  <li>use [ jekyll bundle build ] to build the web page into the _site folder.</li>
+  <li>copy the _site folder to some other folder and start a git repository in there.</li>
+  <li>automate the git commit with the following lines of code.</li>
+</ul>
+
+<p>The following lines specify the basic operations that can be done with your repository. 
+Here, a random word function is being used to generate the commit identification message.
+The script is hardcoded for whis web-site folder structure, in case of using it modify it to fit your folders.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash
+</span>
+
+<span class="c"># copy the files to the destination folder
+</span>
+<span class="nb">cp</span> <span class="nt">-r</span> ./_site/<span class="k">*</span> ../s.ln_blog_prod<span class="p">;</span>
+
+<span class="c"># Save where you are and cd to other dir
+</span>
+<span class="nb">pushd</span> ../s.ln_blog_prod<span class="p">;</span>
+
+<span class="nb">pwd</span><span class="p">;</span>
+
+git add .<span class="p">;</span>
+
+<span class="c"># list remote
+</span>
+git remote <span class="nt">-v</span><span class="p">;</span>
+
+<span class="c"># random txt &amp; num
+</span>
+<span class="nv">randomTxt</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /dev/urandom | <span class="nb">tr</span> <span class="nt">-dc</span> <span class="s1">'[:alpha:]'</span> | <span class="nb">fold</span> <span class="nt">-w</span> <span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">4</span><span class="k">}</span> | <span class="nb">head</span> <span class="nt">-n</span> 1<span class="si">)</span><span class="p">;</span>
+<span class="nv">randomNum</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /dev/urandom | <span class="nb">tr</span> <span class="nt">-dc</span> <span class="s1">'[:digit:]'</span> | <span class="nb">fold</span> <span class="nt">-w</span> <span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">4</span><span class="k">}</span> | <span class="nb">head</span> <span class="nt">-n</span> 1<span class="si">)</span><span class="p">;</span>
+
+<span class="nb">echo</span> <span class="nv">$randomTxt</span><span class="p">;</span>
+<span class="nb">echo</span> <span class="nv">$randomNum</span><span class="p">;</span>
+
+<span class="c"># create the commit
+</span>
+git commit <span class="nt">-m</span> <span class="s2">"</span><span class="nv">$randomTxt$randomNum</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="c"># has to be executed with sudo
+</span>
+<span class="nb">sudo </span>git remote set-url origin git@github.com:waloncab/s.ln_blog<span class="p">;</span>
+
+<span class="c"># push to github
+</span>
+git push <span class="nt">-f</span> <span class="nt">--set-upstream</span> origin master<span class="p">;</span>
+
+<span class="c"># get back where you were at the beginning.
+</span>
+<span class="nb">popd</span><span class="p">;</span></code></pre></figure>
+
+
+<!-- INCLUDE spline / procedural -->
+
+
+
+
+
+<!-- RELATED POSTS -->
+
+<h3>Related Posts</h3>
+
+
+
+<div class="child">
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/NeRF_ficus.html">NeRF - A concrete example, Ficus</a>
+    <p>2023-04-05 18:00:00 -0400</p>
+    <p> explicación inicial, hace falta algo de texto 
+
+</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/LOF-outlier-pipeline.html">LOF Outlier Imblearn Pipeline</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-11-LOF-outlier-pipeline In this post we examine how to append a local outlier factor method to a regular pipeline, but using imblearn ones. Lets review how to use pipelines when the shape of the dataset need to be modified, such as with outlier removal. In&nbsp;[17]: import pandas as pd import numpy...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/polinomial-iterpolation.html">Polynomial Interpolation</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-04-polinomial-iterpolation Since many of the things that we do in the blog are about splines, in this post we're going to cover how to fit polynomials and splines to random scatter points. We'll use some of the basic scikit-learn functionality to avoid implementing the polynomial transformations from scratch. In this...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/jekyll-build-config.html">Jekyll Build Config</a>
+    <p>2022-12-18 19:00:00 -0500</p>
+    <p>Jekyll is a powerfull tool for building static websites. Simple integration with github-pages, fast building process, multiple plug-ins to extend functionality, are some of the core features that makes it great. Let's see different techniques to create a solid webpage and speed-up the build process. # markdwon Markdown is a...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/django-jupyter-notebook.html">Django + Jupyter Notebooks</a>
+    <p>2022-12-16 19:00:00 -0500</p>
+    <p>In this post we explore how to combine the django framework with jupyter notebooks. Sometimes this way of executing code from within the app can be very usuful to test our models. The following code must be executed in the first cell of each notebook. {% highlight python %} #...</p>
+</div>
+            
+        <br>
+
+    
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

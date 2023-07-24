@@ -1,0 +1,11 @@
+.pages_nav {
+    grid-column: 1 / span 2;
+
+    position: block; 
+
+    margin: auto;
+
+    border-radius: 5px;
+    background-color:rgb(246, 149, 255, 0.5);
+    padding: 5px 10px;
+}

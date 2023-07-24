@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Matrix Transformation for Rendering 3D objects-sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Matrix Transformation for Rendering 3D objects" />
+<meta name="author" content="waloncab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Transformations are at the core of any rendering engine. Vectors and matrices are the basic data structures that allow to design and create functions to transform set of points in certain geometric way. Points / Vectors / Matrices Both points and vectors are represented by a list of numbers, but they have different geometric interpretations. Points are simple a defined position in a space but vectors represent a direction within that space. Matrices are the best mathematical construct to apply transformations to the points and vectors, GPUs are highly optimized to compute matrix multiplications in parallel. What kind of operations are needed in the 3D space ? Well, in any rendering engine, we require the following: translation rotation scale Keep reding the text and imagine that transformations are applied from the origin of the coordinate system (global coordinates), we&#39;ll consider local transformations later 4x4 Matrix in a 3D Space Homogeneous coordinates are a system of coordinates used in projective geometry. They have the advantage that the coordinates of points, including points at infinity, can be represented using finite coordinates. Since translation is not a linear transformation we need to embed 3x3 matrices in a 4x4 matrices, find out why Basic Transformation Matrices For any given object we need to translate, rotate, and scale. Each one of this scene objects need to store transformation data in a 4x4 matrix. The matrix multiplication allow to easily modify the transformation data the object stores. The following blocks of code create the most basic matrices in numpy arrays. Model Matrix &lt;p&gt; A matrix is used to store the transformation of any object, but what about the points / vertices of that object in the case that it renders some kind of mesh ? &lt;/p&gt; &lt;p&gt;Storing the transformation in the model matrix allows : &lt;/p&gt; &lt;ul&gt; &lt;li&gt;chain transformations by multiplying the model matrix of the object, the result matrix will store the accumulated transformations.&lt;/li&gt; &lt;li&gt;render a complex mesh without having to store the vertices of the mesh inside the object.&lt;/li&gt; &lt;/ul&gt; def init_Identity(): return np.array( [ [1, 0, 0, 0], [0, 1, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) def init_Translation(x,y,z): return np.array( [ [1, 0, 0, x], [0, 1, 0, y], [0 ,0, 1, z], [0, 0, 0, 1] ]).astype(float) The followings lines of code represent the rotation matrices for the x,y,z axes. Rotation happens around an axis, and the rotation matrix does not move the axis. Rotation can be produced around any vector, but we are considering just the rotation around the basis vectors (axis) since other rotations can be derived later from the world matrix. def init_RotationX(angle): c = cos(angle) s = sin(angle) return np.array( [ [1, 0, 0, 0], [0, c, -s, 0], [0 ,s, c, 0], [0, 0, 0, 1] ]).astype(float) def init_RotationY(angle): c = cos(angle) s = sin(angle) return np.array( [ [ c, 0, s, 0], [ 0, 1, 0, 0], [-s ,0, c, 0], [ 0, 0, 0, 1] ]).astype(float) def init_RotationZ(angle): c = cos(angle) s = sin(angle) return np.array( [ [c, -s, 0, 0], [s, c, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) This scale matrix only accepts one parameter scaling the object uniformly along the x,y, axes. def init_Scale(s): return np.array( [ [s, 0, 0, 0], [0, s, 0, 0], [0 ,0, s, 0], [0, 0, 0, 1] ]).astype(float) Local vs Global Coordinates When we multiply any of the previous matrices by some point we are transforming that point in a global coordinate system (Origin(0,0,0)). For example, when multiplying a point by the translation matrix the point moves along the basis x,y,z axis. Local transformations require to define an internal local coordinate system. Origin, orientation, and scale of the local coordinate axes are chosen for convenience, but usually the center of the object is selected to transform locally. How to use matrix multiplication to perform transformations in Local Coordinate Systems &lt;p&gt; Let&#39;s keep it simple, in order to perform any global transformation we chain matrix multiplications on the left side of expression. To achieve local transformations just multiply on the right side of the expression. Keep in mind that matrix multiplication is not commutative: A*B != B*A &lt;/p&gt; &lt;ul&gt; &lt;li&gt;Global Transformation: T3 * T2 * T1 * M(model_matrix)&lt;/li&gt; &lt;li&gt;Local Transformation: M(model_matrix) * T1 * T2 * T3&lt;/li&gt; &lt;/ul&gt; Perspective Matrix Perspective matrix for rendering the scene. Frustum: truncated pyramid that defines the visible region. Parameters near / far distance: angle of view: the angle between from and bottom frustum planes. aspect ratio: width / height of the rendered image. def init_Perspective(angleOfView=60, aspectRatio=1, near=0.1, far=1000): #convert to radians a = angleOfView *pi/180 d = 1.0 / tan(a/2) r = aspectRatio b = (far + near) / (near - far) c = 2 * far * near / (near - far) return np.array( [ [d/r, 0, 0, 0], [0, d, 0, 0], [0 ,0, b, c], [0, 0, -1, 0] ]).astype(float) Within the spline context, all this properties allow simple and more complex transformations to take place. Some bezier operations are faster in a matrix form, and whenever a global/local transformation is needed there are matrix multiplications underneath. Check some of the demos to feel the movement." />
+<meta property="og:description" content="Transformations are at the core of any rendering engine. Vectors and matrices are the basic data structures that allow to design and create functions to transform set of points in certain geometric way. Points / Vectors / Matrices Both points and vectors are represented by a list of numbers, but they have different geometric interpretations. Points are simple a defined position in a space but vectors represent a direction within that space. Matrices are the best mathematical construct to apply transformations to the points and vectors, GPUs are highly optimized to compute matrix multiplications in parallel. What kind of operations are needed in the 3D space ? Well, in any rendering engine, we require the following: translation rotation scale Keep reding the text and imagine that transformations are applied from the origin of the coordinate system (global coordinates), we&#39;ll consider local transformations later 4x4 Matrix in a 3D Space Homogeneous coordinates are a system of coordinates used in projective geometry. They have the advantage that the coordinates of points, including points at infinity, can be represented using finite coordinates. Since translation is not a linear transformation we need to embed 3x3 matrices in a 4x4 matrices, find out why Basic Transformation Matrices For any given object we need to translate, rotate, and scale. Each one of this scene objects need to store transformation data in a 4x4 matrix. The matrix multiplication allow to easily modify the transformation data the object stores. The following blocks of code create the most basic matrices in numpy arrays. Model Matrix &lt;p&gt; A matrix is used to store the transformation of any object, but what about the points / vertices of that object in the case that it renders some kind of mesh ? &lt;/p&gt; &lt;p&gt;Storing the transformation in the model matrix allows : &lt;/p&gt; &lt;ul&gt; &lt;li&gt;chain transformations by multiplying the model matrix of the object, the result matrix will store the accumulated transformations.&lt;/li&gt; &lt;li&gt;render a complex mesh without having to store the vertices of the mesh inside the object.&lt;/li&gt; &lt;/ul&gt; def init_Identity(): return np.array( [ [1, 0, 0, 0], [0, 1, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) def init_Translation(x,y,z): return np.array( [ [1, 0, 0, x], [0, 1, 0, y], [0 ,0, 1, z], [0, 0, 0, 1] ]).astype(float) The followings lines of code represent the rotation matrices for the x,y,z axes. Rotation happens around an axis, and the rotation matrix does not move the axis. Rotation can be produced around any vector, but we are considering just the rotation around the basis vectors (axis) since other rotations can be derived later from the world matrix. def init_RotationX(angle): c = cos(angle) s = sin(angle) return np.array( [ [1, 0, 0, 0], [0, c, -s, 0], [0 ,s, c, 0], [0, 0, 0, 1] ]).astype(float) def init_RotationY(angle): c = cos(angle) s = sin(angle) return np.array( [ [ c, 0, s, 0], [ 0, 1, 0, 0], [-s ,0, c, 0], [ 0, 0, 0, 1] ]).astype(float) def init_RotationZ(angle): c = cos(angle) s = sin(angle) return np.array( [ [c, -s, 0, 0], [s, c, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) This scale matrix only accepts one parameter scaling the object uniformly along the x,y, axes. def init_Scale(s): return np.array( [ [s, 0, 0, 0], [0, s, 0, 0], [0 ,0, s, 0], [0, 0, 0, 1] ]).astype(float) Local vs Global Coordinates When we multiply any of the previous matrices by some point we are transforming that point in a global coordinate system (Origin(0,0,0)). For example, when multiplying a point by the translation matrix the point moves along the basis x,y,z axis. Local transformations require to define an internal local coordinate system. Origin, orientation, and scale of the local coordinate axes are chosen for convenience, but usually the center of the object is selected to transform locally. How to use matrix multiplication to perform transformations in Local Coordinate Systems &lt;p&gt; Let&#39;s keep it simple, in order to perform any global transformation we chain matrix multiplications on the left side of expression. To achieve local transformations just multiply on the right side of the expression. Keep in mind that matrix multiplication is not commutative: A*B != B*A &lt;/p&gt; &lt;ul&gt; &lt;li&gt;Global Transformation: T3 * T2 * T1 * M(model_matrix)&lt;/li&gt; &lt;li&gt;Local Transformation: M(model_matrix) * T1 * T2 * T3&lt;/li&gt; &lt;/ul&gt; Perspective Matrix Perspective matrix for rendering the scene. Frustum: truncated pyramid that defines the visible region. Parameters near / far distance: angle of view: the angle between from and bottom frustum planes. aspect ratio: width / height of the rendered image. def init_Perspective(angleOfView=60, aspectRatio=1, near=0.1, far=1000): #convert to radians a = angleOfView *pi/180 d = 1.0 / tan(a/2) r = aspectRatio b = (far + near) / (near - far) c = 2 * far * near / (near - far) return np.array( [ [d/r, 0, 0, 0], [0, d, 0, 0], [0 ,0, b, c], [0, 0, -1, 0] ]).astype(float) Within the spline context, all this properties allow simple and more complex transformations to take place. Some bezier operations are faster in a matrix form, and whenever a global/local transformation is needed there are matrix multiplications underneath. Check some of the demos to feel the movement." />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/posts/matrix_transformations.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/posts/matrix_transformations.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-20T11:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Matrix Transformation for Rendering 3D objects" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"waloncab"},"dateModified":"2022-07-20T11:00:00-04:00","datePublished":"2022-07-20T11:00:00-04:00","description":"Transformations are at the core of any rendering engine. Vectors and matrices are the basic data structures that allow to design and create functions to transform set of points in certain geometric way. Points / Vectors / Matrices Both points and vectors are represented by a list of numbers, but they have different geometric interpretations. Points are simple a defined position in a space but vectors represent a direction within that space. Matrices are the best mathematical construct to apply transformations to the points and vectors, GPUs are highly optimized to compute matrix multiplications in parallel. What kind of operations are needed in the 3D space ? Well, in any rendering engine, we require the following: translation rotation scale Keep reding the text and imagine that transformations are applied from the origin of the coordinate system (global coordinates), we&#39;ll consider local transformations later 4x4 Matrix in a 3D Space Homogeneous coordinates are a system of coordinates used in projective geometry. They have the advantage that the coordinates of points, including points at infinity, can be represented using finite coordinates. Since translation is not a linear transformation we need to embed 3x3 matrices in a 4x4 matrices, find out why Basic Transformation Matrices For any given object we need to translate, rotate, and scale. Each one of this scene objects need to store transformation data in a 4x4 matrix. The matrix multiplication allow to easily modify the transformation data the object stores. The following blocks of code create the most basic matrices in numpy arrays. Model Matrix &lt;p&gt; A matrix is used to store the transformation of any object, but what about the points / vertices of that object in the case that it renders some kind of mesh ? &lt;/p&gt; &lt;p&gt;Storing the transformation in the model matrix allows : &lt;/p&gt; &lt;ul&gt; &lt;li&gt;chain transformations by multiplying the model matrix of the object, the result matrix will store the accumulated transformations.&lt;/li&gt; &lt;li&gt;render a complex mesh without having to store the vertices of the mesh inside the object.&lt;/li&gt; &lt;/ul&gt; def init_Identity(): return np.array( [ [1, 0, 0, 0], [0, 1, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) def init_Translation(x,y,z): return np.array( [ [1, 0, 0, x], [0, 1, 0, y], [0 ,0, 1, z], [0, 0, 0, 1] ]).astype(float) The followings lines of code represent the rotation matrices for the x,y,z axes. Rotation happens around an axis, and the rotation matrix does not move the axis. Rotation can be produced around any vector, but we are considering just the rotation around the basis vectors (axis) since other rotations can be derived later from the world matrix. def init_RotationX(angle): c = cos(angle) s = sin(angle) return np.array( [ [1, 0, 0, 0], [0, c, -s, 0], [0 ,s, c, 0], [0, 0, 0, 1] ]).astype(float) def init_RotationY(angle): c = cos(angle) s = sin(angle) return np.array( [ [ c, 0, s, 0], [ 0, 1, 0, 0], [-s ,0, c, 0], [ 0, 0, 0, 1] ]).astype(float) def init_RotationZ(angle): c = cos(angle) s = sin(angle) return np.array( [ [c, -s, 0, 0], [s, c, 0, 0], [0 ,0, 1, 0], [0, 0, 0, 1] ]).astype(float) This scale matrix only accepts one parameter scaling the object uniformly along the x,y, axes. def init_Scale(s): return np.array( [ [s, 0, 0, 0], [0, s, 0, 0], [0 ,0, s, 0], [0, 0, 0, 1] ]).astype(float) Local vs Global Coordinates When we multiply any of the previous matrices by some point we are transforming that point in a global coordinate system (Origin(0,0,0)). For example, when multiplying a point by the translation matrix the point moves along the basis x,y,z axis. Local transformations require to define an internal local coordinate system. Origin, orientation, and scale of the local coordinate axes are chosen for convenience, but usually the center of the object is selected to transform locally. How to use matrix multiplication to perform transformations in Local Coordinate Systems &lt;p&gt; Let&#39;s keep it simple, in order to perform any global transformation we chain matrix multiplications on the left side of expression. To achieve local transformations just multiply on the right side of the expression. Keep in mind that matrix multiplication is not commutative: A*B != B*A &lt;/p&gt; &lt;ul&gt; &lt;li&gt;Global Transformation: T3 * T2 * T1 * M(model_matrix)&lt;/li&gt; &lt;li&gt;Local Transformation: M(model_matrix) * T1 * T2 * T3&lt;/li&gt; &lt;/ul&gt; Perspective Matrix Perspective matrix for rendering the scene. Frustum: truncated pyramid that defines the visible region. Parameters near / far distance: angle of view: the angle between from and bottom frustum planes. aspect ratio: width / height of the rendered image. def init_Perspective(angleOfView=60, aspectRatio=1, near=0.1, far=1000): #convert to radians a = angleOfView *pi/180 d = 1.0 / tan(a/2) r = aspectRatio b = (far + near) / (near - far) c = 2 * far * near / (near - far) return np.array( [ [d/r, 0, 0, 0], [0, d, 0, 0], [0 ,0, b, c], [0, 0, -1, 0] ]).astype(float) Within the spline context, all this properties allow simple and more complex transformations to take place. Some bezier operations are faster in a matrix form, and whenever a global/local transformation is needed there are matrix multiplications underneath. Check some of the demos to feel the movement.","headline":"Matrix Transformation for Rendering 3D objects","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/posts/matrix_transformations.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/posts/matrix_transformations.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/table.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+         
+    <h1>sln-alesteba:blog</h1>
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/social.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.6.js"></script> 
+
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three/build/three.module.js"
+        }
+    }
+    </script>
+
+    <p>
+        <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+        <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+        <a href="https://www.instagram.com/walon_cab/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+    </p>
+
+</div> 
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/nav.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/about/">About</a><a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <!-- SUPPORT FOR JUPYTER NOTEBOOKS -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/notebook.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/colorful.css">
+
+<!-- SUPPORT FOR LATEX -->
+
+<script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+type="text/javascript">
+</script>
+
+
+<h1>Matrix Transformation for Rendering 3D objects</h1>
+
+<!-- PAGE CATEGORIES -->
+
+<hr>
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=blog';">
+        blog
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=python';">
+        python
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=render';">
+        render
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=openGL';">
+        openGL
+    </button> 
+
+
+
+    <button type="button" 
+            onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=graphics';">
+        graphics
+    </button> 
+
+
+
+<hr>
+
+<!-- <h3> Matrix Transformations & Rendering 3D</h3> -->
+
+<p>
+    Transformations are at the core of any rendering engine. 
+    Vectors and matrices are the basic data structures that allow to
+    design and create functions to transform set of points in certain geometric way.
+</p>
+
+<h3> Points / Vectors / Matrices</h3>
+<p>
+    Both points and vectors are represented by a list of numbers, but they have different geometric interpretations.
+    Points are simple a defined position in a space but vectors represent a direction within that space.
+    Matrices are the best mathematical construct to apply transformations to the points and vectors, GPUs are highly optimized
+    to compute matrix multiplications in parallel.
+</p>
+
+<h3> What kind of operations are needed in the 3D space ? </h3>
+
+<p>Well, in any rendering engine, we require the following:</p>
+
+<ul>
+    <li>translation</li>
+    <li>rotation</li>
+    <li>scale</li>
+</ul>
+
+<p> Keep reding the text and imagine that transformations are applied from the origin of the coordinate system (global coordinates), 
+    we'll consider local transformations later  </p>
+
+<h3>4x4 Matrix in a 3D Space</h3>
+
+<p> <a href="https://en.wikipedia.org/wiki/Homogeneous_coordinates">Homogeneous coordinates</a> are a system of coordinates used in projective geometry.
+    They have the advantage that the coordinates of points, including points at infinity, can be represented using finite coordinates.
+    Since translation is not a linear transformation we need to embed 3x3 matrices in a 4x4 matrices, <a href="https://en.wikipedia.org/wiki/Translation_(geometry)">find out why</a>
+</p>
+
+<h3> Basic Transformation Matrices</h3>
+
+<p>
+For any given object we need to translate, rotate, and scale. Each one of this scene objects need to store transformation data in a 4x4 matrix. 
+The matrix multiplication allow to easily modify the transformation data the object stores.
+The following blocks of code create the most basic matrices in numpy arrays.
+</p>
+
+<h3>Model Matrix</h3>
+
+    <p>
+    A matrix is used to store the transformation of any object, but what about the points / vertices of that object in the case that 
+    it renders some kind of mesh ?
+    </p>
+
+    <p>Storing the transformation in the model matrix allows : </p>
+
+    <ul>
+        <li>chain transformations by multiplying the model matrix of the object, the result matrix will store the accumulated transformations.</li>
+        <li>render a complex mesh without having to store the vertices of the mesh inside the object.</li>
+    </ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">init_Identity</span><span class="p">():</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">init_Translation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></code></pre></figure>
+
+<p>
+    The followings lines of code represent the rotation matrices for the x,y,z axes.
+    Rotation happens around an axis, and the rotation matrix does not move the axis.
+    Rotation can be produced around any vector, but we are considering just the rotation around the 
+    basis vectors (axis) since other rotations can be derived later from the world matrix.
+</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">init_RotationX</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="n">s</span><span class="p">,</span>  <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">init_RotationY</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">init_RotationZ</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></code></pre></figure>
+
+<p>
+    This scale matrix only accepts one parameter scaling the object uniformly along the x,y, axes.
+</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">init_Scale</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></code></pre></figure>
+
+<h3> Local vs Global Coordinates </h3>
+
+<p>
+    When we multiply any of the previous matrices by some point we are transforming that point in a global coordinate system (Origin(0,0,0)). 
+    For example, when multiplying a point by the translation matrix the point moves along the basis x,y,z axis.
+    Local transformations require to define an internal local coordinate system. Origin, orientation, and scale of the
+    local coordinate axes are chosen for convenience, but usually the center of the object is selected to transform locally.
+</p>
+
+<h3> How to use matrix multiplication to perform transformations in Local Coordinate Systems </h3>
+
+    <p>
+        Let's keep it simple, in order to perform any global transformation we chain matrix multiplications on the left side of expression.
+        To achieve local transformations just multiply on the right side of the expression. 
+        Keep in mind that matrix multiplication is not commutative: A*B != B*A 
+    </p>
+
+    <ul>
+        <li>Global Transformation: T3 * T2 * T1 * M(model_matrix)</li>
+        <li>Local Transformation: M(model_matrix) * T1 * T2 * T3</li>
+    </ul>
+
+<h3> Perspective Matrix </h3>
+
+<p>
+    Perspective matrix for rendering the scene.
+</p>
+
+<ul>
+    <li>Frustum: truncated pyramid that defines the visible region.</li>
+    <li>Parameters</li>
+    <ul>
+        <li>near / far distance: </li>
+        <li>angle of view: the angle between from and bottom frustum planes.</li>
+        <li>aspect ratio: width / height of the rendered image.</li>
+    </ul>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">init_Perspective</span><span class="p">(</span><span class="n">angleOfView</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">aspectRatio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">near</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">far</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+
+    <span class="c1">#convert to radians
+</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">angleOfView</span> <span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">tan</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">aspectRatio</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">far</span> <span class="o">+</span> <span class="n">near</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">near</span> <span class="o">-</span> <span class="n">far</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span>  <span class="mi">2</span> <span class="o">*</span> <span class="n">far</span> <span class="o">*</span> <span class="n">near</span> <span class="o">/</span> <span class="p">(</span><span class="n">near</span> <span class="o">-</span> <span class="n">far</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">d</span><span class="o">/</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">]).</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></code></pre></figure>
+
+<p>
+    Within the spline context, all this properties allow simple and more complex transformations to take place.
+    Some bezier operations are faster in a matrix form, and whenever a global/local transformation is needed there are matrix multiplications underneath.
+    Check some of the demos to feel the movement.
+</p>
+
+<!-- INCLUDE spline / procedural -->
+
+
+
+
+
+<!-- RELATED POSTS -->
+
+<h3>Related Posts</h3>
+
+
+
+<div class="child">
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/NeRF_ficus.html">NeRF - A concrete example, Ficus</a>
+    <p>2023-04-05 18:00:00 -0400</p>
+    <p> explicación inicial, hace falta algo de texto 
+
+</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/LOF-outlier-pipeline.html">LOF Outlier Imblearn Pipeline</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-11-LOF-outlier-pipeline In this post we examine how to append a local outlier factor method to a regular pipeline, but using imblearn ones. Lets review how to use pipelines when the shape of the dataset need to be modified, such as with outlier removal. In&nbsp;[17]: import pandas as pd import numpy...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/polinomial-iterpolation.html">Polynomial Interpolation</a>
+    <p>2023-03-04 17:00:00 -0500</p>
+    <p>2023-03-04-polinomial-iterpolation Since many of the things that we do in the blog are about splines, in this post we're going to cover how to fit polynomials and splines to random scatter points. We'll use some of the basic scikit-learn functionality to avoid implementing the polynomial transformations from scratch. In this...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/jekyll-build-config.html">Jekyll Build Config</a>
+    <p>2022-12-18 19:00:00 -0500</p>
+    <p>Jekyll is a powerfull tool for building static websites. Simple integration with github-pages, fast building process, multiple plug-ins to extend functionality, are some of the core features that makes it great. Let's see different techniques to create a solid webpage and speed-up the build process. # markdwon Markdown is a...</p>
+</div>
+            
+        <br>
+
+    
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/django-jupyter-notebook.html">Django + Jupyter Notebooks</a>
+    <p>2022-12-16 19:00:00 -0500</p>
+    <p>In this post we explore how to combine the django framework with jupyter notebooks. Sometimes this way of executing code from within the app can be very usuful to test our models. The following code must be executed in the first cell of each notebook. {% highlight python %} #...</p>
+</div>
+            
+        <br>
+
+    
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
+
+    <div class="grid-container">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+
+      </div>
+
+</div>
+
+        </div>
+
+    </body>
+
+</html> 
