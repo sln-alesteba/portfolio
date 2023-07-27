@@ -8,7 +8,7 @@
 
         <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
 
-        <title>Blog-Page 5 of 5 -sln-alesteba:blog </title>
+        <title>Blog-Page 5 of 6 -sln-alesteba:blog </title>
           
         <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.2.2" />
@@ -21,6 +21,7 @@
 <meta property="og:site_name" content="sln-alesteba:blog" />
 <meta property="og:type" content="website" />
 <link rel="prev" href="https://sln-alesteba.github.io/portfolio/portfolio/page4/" />
+<link rel="next" href="https://sln-alesteba.github.io/portfolio/portfolio/page6/" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Blog" />
 <script type="application/ld+json">
@@ -203,6 +204,13 @@
         <button type="button" 
                 onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=bezier';">
             bezier
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=parallel';">
+            parallel
         </button> 
 
     
@@ -421,6 +429,42 @@
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/2_bezier_MAT.html">Bezier Matrix</a>
+    <p>2021-11-06 19:56:49 -0400</p>
+    <p>2023-07-24-2_bezier_MAT In [1]: import scipy.special import numpy as np In this final notebook, we are going to compute the Bézier curves as matrix operations. This approach will make it easier to accelerate the computation, since matrix operations can be easily implemented as CUDA kernels. We'll start by writing the general Bézier...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/1_bezier_CUDA.html">Bezier CUDA</a>
+    <p>2021-11-06 19:56:49 -0400</p>
+    <p>2023-07-24-1_bezier_CUDA Bézier curves are polynomials of t, they can be implemented using simple polynomials. When a new control point is introduced the curve degree increases making the computational cost rise exponentially. The following code will implement a general method to test n-control points and n-dimension curves. Take a look at...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/0_bezier_PLL.html">Bezier Parallel</a>
+    <p>2021-11-06 19:56:49 -0400</p>
+    <p>2023-07-24-0_bezier_PLL Introduction¶ In this publication, we are going to understand how general Bézier curves are created, and we'll implement different parallel algorithms to make them run faster. The aim of this post is to handle general curves, that means that we need the mathematical tools to create them. You may...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/bezier-matrix.html">Beizer Matrix Form</a>
     <p>2021-11-06 19:56:49 -0400</p>
     <p>In this post we understand how to get a point in a Bezier curve. These curves are about interpolation, the most used ones are cubic beziers since they can be really good optimized. Given an interpolation parameter t, the coordinates of the respective points can be calculated with a concrete...</p>
@@ -442,18 +486,6 @@
 
     
 
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/interpolation-spline.html">Interpoaltion in Graphics</a>
-    <p>2021-11-06 03:56:49 -0400</p>
-    <p>What traversing splines looks like? Interpolation in one of the core features of graphics development, you have it almost in every small tool that the game engine contains. Within the spline framework a linear interpolation is used to traverse shapes. Lets see some of the most relevant types of interpolation:...</p>
-</div>
-
-            <br>
-
-    
-
     <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/paginate.css"><div class="pages_nav"><a href="https://sln-alesteba.github.io/portfolio/blog//page4/">
                 <button><</button>
             </a><a href="https://sln-alesteba.github.io/portfolio/blog/">
@@ -464,7 +496,11 @@
                     <button>3</button>
                 </a><a href="https://sln-alesteba.github.io/portfolio/blog/page4">
                     <button>4</button>
-                </a><button>5</button></div>
+                </a><button>5</button><a href="https://sln-alesteba.github.io/portfolio/blog/page6">
+                    <button>6</button>
+                </a><a href="https://sln-alesteba.github.io/portfolio/blog//page6/">
+                <button>></button>
+            </a></div>
 
 </div>
 
@@ -475,7 +511,7 @@
     <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
     <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/footer.css">
 
-    <div class="grid-container">
+    <div class="grid-container-footer">
 
         <div class="item1" id="rotator">
             <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
@@ -497,8 +533,8 @@
 
             <p align="center">
                 <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
-                <a href="https://www.instagram.com/waloncab/" class="fa fa-instagram"></a>
-                <a href="https://www.instagram.com/waloncab/" class="fa fa-facebook"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-facebook"></a>
                 <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
             </p>
         </div>  

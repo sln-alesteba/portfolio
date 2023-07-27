@@ -9,7 +9,7 @@
     border-radius: 5px;
 }
 
-.grid-container {
+.grid-container-footer {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 10px;
@@ -17,8 +17,9 @@
     /* padding: 10px; */
     }
 
-.grid-container > div {
-    background-color: rgba(255, 255, 255, 0.2);
+.grid-container-footer > div {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background: linear-gradient(to bottom, #414141 0%, #929292 100%);
     padding: 0px 10px;
     font-size: 14px;
     text-align:left;
