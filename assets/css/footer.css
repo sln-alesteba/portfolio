@@ -1,9 +1,9 @@
 .footer{
     padding: 10px;
     text-align: center;
-    /* background: #1abc9c; */
-    background: linear-gradient(to bottom, #777777 0%, #b9b9b9 100%);
-    color: rgb(255, 255, 255);;
+    background: #ffffff00;
+    /* background: linear-gradient(to bottom, #777777 0%, #b9b9b9 100%); */
+    color: rgb(0, 0, 0);;
     font-size: 12px;
 
     border: 2px solid rgb(0, 0, 0);
