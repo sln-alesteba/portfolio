@@ -164,6 +164,9 @@
 <loc>https://sln-alesteba.github.io/portfolio/portfolio/projects/bezier/</loc>
 </url>
 <url>
+<loc>https://sln-alesteba.github.io/portfolio/portfolio/projects/pipeline/</loc>
+</url>
+<url>
 <loc>https://sln-alesteba.github.io/portfolio/portfolio/projects/shaders/</loc>
 </url>
 <url>
@@ -223,9 +226,5 @@
 <url>
 <loc>https://sln-alesteba.github.io/portfolio/portfolio/projects/header/</loc>
 <lastmod>2023-07-26T08:02:31-04:00</lastmod>
-</url>
-<url>
-<loc>https://sln-alesteba.github.io/portfolio/portfolio/projects/pipeline/</loc>
-<lastmod>2023-07-27T07:06:46-04:00</lastmod>
 </url>
 </urlset>
