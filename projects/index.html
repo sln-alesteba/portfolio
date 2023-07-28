@@ -153,27 +153,29 @@
 <style>
     .grid-container-prj {
       display: grid;
-      grid-template-columns: auto auto;
+      /* grid-template-columns: auto auto; */
+      grid-template-columns: repeat( auto-fit, minmax(50.0%, 1fr) );
       background-color: #2196F3;
       padding: 10px;
     }
 
     .grid-item-prj {
+      grid-column: span 1;
       background-color: rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(0, 0, 0, 0.8);
-      /* padding: 20px; */
-      font-size: 30px;
+      padding: 20px;
+      /* font-size: 15px; */
       text-align: center;
-      position: relative;
+      /* position: relative; */
     }
 
     .gallery__img {
-      /* width: 100%;
-      height: 100%;
-      object-fit: cover; */
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* width: 100%;
       height: auto;
-      opacity: 0.6;
+      opacity: 0.6; */
     }
 
     /* Bottom right text */
@@ -188,6 +190,16 @@
       /* padding-left: 20px;
       padding-right: 20px; */
     }
+
+    figcaption {
+      font-size: 15px;
+    width: 100%;
+  background-color: black;
+  color: white;
+  font-style: italic;
+  padding: 2px;
+  text-align: center;
+}
 </style>
 
 <div class="child">
@@ -224,19 +236,17 @@
 
                 <div class="grid-item-prj">
 
-                  <div class="text-block">
-
                     <img src="/portfolio/assets/img/img_3.jpg" class="gallery__img">
 
                     <!-- consider external links, and redirect outside the page -->
 
+                    <figcaption>
                     
 
                       <a href="/">3D</a>
 
                     
-
-                  </div>
+                    </figcaption>
 
                   </img>
 
@@ -260,19 +270,17 @@
 
                 <div class="grid-item-prj">
 
-                  <div class="text-block">
-
                     <img src="/portfolio/assets/img/img_2.jpg" class="gallery__img">
 
                     <!-- consider external links, and redirect outside the page -->
 
+                    <figcaption>
                     
 
                       <a href="/">Bezier</a>
 
                     
-
-                  </div>
+                    </figcaption>
 
                   </img>
 
@@ -296,19 +304,17 @@
 
                 <div class="grid-item-prj">
 
-                  <div class="text-block">
-
                     <img src="/portfolio/assets/img/pipeline.png" class="gallery__img">
 
                     <!-- consider external links, and redirect outside the page -->
 
+                    <figcaption>
                     
 
                       <a href="https://alesteba.github.io/tfg//">TFG | Pipeline Datos Agronómicos</a>
 
                     
-
-                  </div>
+                    </figcaption>
 
                   </img>
 
@@ -332,19 +338,17 @@
 
                 <div class="grid-item-prj">
 
-                  <div class="text-block">
-
                     <img src="/portfolio/assets/img/shaders.jpg" class="gallery__img">
 
                     <!-- consider external links, and redirect outside the page -->
 
+                    <figcaption>
                     
 
                       <a href="/">Shaders</a>
 
                     
-
-                  </div>
+                    </figcaption>
 
                   </img>
 
