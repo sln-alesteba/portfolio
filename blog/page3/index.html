@@ -209,27 +209,6 @@
     
 
         <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=parallel';">
-            parallel
-        </button> 
-
-    
-
-        <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=image';">
-            image
-        </button> 
-
-    
-
-        <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=machine-learning';">
-            machine-learning
-        </button> 
-
-    
-
-        <button type="button" 
                 onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=audio';">
             audio
         </button> 
@@ -384,29 +363,29 @@
     
 
         <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=django';">
-            django
-        </button> 
-
-    
-
-        <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=sofwtare';">
-            sofwtare
-        </button> 
-
-    
-
-        <button type="button" 
-                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=UML';">
-            UML
-        </button> 
-
-    
-
-        <button type="button" 
                 onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=deep-learning';">
             deep-learning
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=machine-learning';">
+            machine-learning
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=parallel';">
+            parallel
+        </button> 
+
+    
+
+        <button type="button" 
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=image';">
+            image
         </button> 
 
     
@@ -429,6 +408,42 @@
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/recursive-graph-neighbours.html">Recursive Graph Neighbours</a>
+    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-11-12-graph-depth In&nbsp;[1]: import networkx as nx import matplotlib.pyplot as plt In&nbsp;[2]: G = nx.gnp_random_graph(100, 0.075, seed=None, directed=False) In&nbsp;[3]: nx.draw(G) In&nbsp;[4]: def neigh(G, node, depth): node_list = [] if depth==0: node_list.append(node) else: for neighbor in G.neighbors(node): node_list.append(node) node_list += neigh(G, neighbor, depth-1) return list(set(node_list)) In&nbsp;[5]: # For 10 random nodes, draw...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/map-filter-reduce-recursive.html">Recursive / Map - Filter - Reduce</a>
+    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-10-03-recursive-definitions In&nbsp;[&nbsp;]: def map_rec(f,l): if l == []: return l else: h = map_rec(f,l[1:]) h.insert(0,f(l[0])) return(h) In&nbsp;[&nbsp;]: def filter_rec(f, l): if l == []: return l else: h = filter_rec(f,l[1:]) if f(l[0]): h.insert(0,l[0]) return(h) In&nbsp;[&nbsp;]: def reduce_rec(f, l, s): if l == []: return l elif len(l) == 1: return...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/clousure-callback.html">Clousures as Callbacks</a>
+    <p>2022-10-02 20:00:00 -0400</p>
+    <p>2022-10-03-clousure-callback Clousere definition: In&nbsp;[&nbsp;]: def func1(): var = "Enclosed Function" def func2(): var = "Nested Function" print(var) return func2 res = func1() res Returning a function allows us to execute something previously defined when that process ends. Without actually defining a class, we can group the definition of a procedure...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/hide-cells-jupyter-notebook-source.html">Hide Cells in Jupyter Notebook From Source</a>
     <p>2022-07-28 20:00:00 -0400</p>
     <p>2022-11-12-hide_cells_jupyter In&nbsp;[6]: import nbformat as nbf from glob import glob def hide_cells_jupiter(file_path): # Text to look for in adding tags text_search_dict = { "# HIDDEN": "remove-cell", # Remove the whole cell "# NO CODE": "remove-input", # Remove only the input "# HIDE CODE": "hide-input" # Hide the input w/ a...</p>
@@ -444,42 +459,6 @@
     <a href="https://sln-alesteba.github.io/portfolio/posts/latex-markdow-jekyll.html">LateX for markdown (.md) in Jekyll</a>
     <p>2022-07-28 20:00:00 -0400</p>
     <p>This is for anyone looking for how to use lateX whitin markdown (.md) files for jekyll. Jekyll won’t process the latex code, it has to be done in the browser with javascript. Include the following script calling CDN in the layout that contains your blog-post: &lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt; &lt;/script&gt; \[W...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/networkx-graph-traversal.html">NetworkX Graph Random Walk</a>
-    <p>2022-07-27 20:00:00 -0400</p>
-    <p>graph_traverse NetworkX is powerfull python library for working with big graph structures. Let's analyze how to randomly walk directed graphs. In&nbsp;[52]: import pylab as p import networkx as nx import numpy as np import random In&nbsp;[53]: G = nx.DiGraph() G.add_edge("A","B") G.add_edge("A","H") G.add_edge("H","C") G.add_edge("B","C") G.add_edge("B","D") nx.draw(G) p.show() Randomly traversing a graph...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/random-vector-within-cone.html">Random Vector within Cone</a>
-    <p>2022-07-26 20:00:00 -0400</p>
-    <p>Rendering engines use Quaterinions for complex rotations in 3D-space. Here, a different approach is going to be use to generate a random vector within a defined cone. Follow the next steps: Generate a random unit vector. coneDirection = (pl1- pl2) / np.linalg.norm(coneDirection) randomVector = v / np.linalg.norm(v) Project this vector...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/rendering_engine_architecture.html">Rendering Engine Architecture</a>
-    <p>2022-07-20 11:00:00 -0400</p>
-    <p>Graphics Library vs Rendering Engine OpenGL is a graphics library with many functions for drawing complex geometries based on more simple geometry primitives such as points, lines and triangles. A rendering engine is a well defined framework that uses some of the graphics library functions to deliver a simple way...</p>
 </div>
 
             <br>
