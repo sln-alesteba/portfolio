@@ -1,16 +1,26 @@
+
+.tag-container
+{
+    display: block;
+    margin: auto;
+
+    border-radius: 10px;
+    background-color:rgba(0, 0, 0, 0.10);
+}
+
 /* Estilos para los elementos input tipo radio */
 .chip-input {
     display: none; /* Oculta los inputs reales */
 }
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
   width: 100%;
   padding-top: 32px;
-}
+} */
 
 section {
     display: flex;
