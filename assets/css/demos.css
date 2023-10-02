@@ -14,7 +14,7 @@
 }
 
 .item_demo_1 img {
-    border: 2px solid rgb(255, 230, 255);
+    /* border: 2px solid rgb(255, 230, 255); */
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -35,5 +35,5 @@
     border-radius: 5px;
     background-color:#1abc9c;
     padding: 0px 10px;
-    border: 2px solid rgb(0, 0, 0);
+    /* border: 2px solid rgb(0, 0, 0); */
   }
