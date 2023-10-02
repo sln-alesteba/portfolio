@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de imágenes</title>
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/img/neuronup_logo-white.png" alt="Logo de NeuronUP">
+            PRODUCT LABS
+        </div>
+        <nav>
+            <div><a href="#">MIS IMÁGENES</a></div>
+            <div><a href="#">MIS ACTIVIDADES</a></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="border-bottom">
+            <h1>Generador de imágenes NeuronUP con IA</h1>
+            <p>Utiliza nuestra IA para tener una imagen diferente siempre que lo necesites.</p>
+        </section>
+
+        <div class="form-image">
+            <div class="form-content">
+                <form>
+                    <section>
+                        <h2>Contenido Principal</h2>
+                        <p>Selecciona un concepto o escribe uno nuevo para que podamos ayudarte a generar imágenes mucho
+                            más cercanas a lo que necesitas.</p>
+                        <div class="option-line">
+                            <input type="radio" class="chip-input" id="option1" name="concept-option" value="Option1">
+                            <label class="chip-label" for="option1">Comida</label>
+
+                            <input type="radio" class="chip-input" id="option2" name="concept-option" value="Option2">
+                            <label class="chip-label" for="option2">Deportes</label>
+
+                            <input type="radio" class="chip-input" id="option3" name="concept-option" value="Option3">
+                            <label class="chip-label" for="option3">Option 3</label>
+                        </div>
+
+                        <input class="write" type="text" id="concept" name="concept" placeholder="Escribir nuevo concepto" required>
+                    </section>
+
+                    <section>
+                        <h2>Edad</h2>
+                        <p>Indica la edad del usuario que va a trabajar con la imagen para hacerla más adecuada.</p>
+                        <div class="option-line">
+                            <input type="radio" class="chip-input" id="adult" name="age" value="Adult">
+                            <label class="chip-label" for="adult">Adulto</label>
+
+                            <input type="radio" class="chip-input" id="kid" name="age" value="Kid">
+                            <label class="chip-label" for="kid">Infantil</label>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Descripción de la imagen</h2>
+                        <p>En base al concepto y la edad te recomendaremos una descripción entendible para nuestra IA.
+                            <b>Puedes modificar esta descripción como desees.</b></p>
+
+                        <input class="write" type="text" id="promt" name="promt" placeholder="Ejemplo de promt para el modelo de difusión." required>
+                    </section>
+                    <div class="actions">
+                        <input class="button btn-1" type="submit" value="Generar">
+                        <input class="button btn-2" type="button" value="Sugerir otra descripción">
+                    </div>
+                </form>
+            </div>
+
+            <div class="image-content">
+                <form>
+                    <img src="assets/img/empty.png" alt="Imagen vacía">
+                    <div class="actions image">
+                        <input class="button btn-3" type="submit" value="Guardar">
+                        <input class="button btn-4" type="button" value="Generar otra actividad">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Derechos reservados &copy; 2023 NeuronUP</p>
+    </footer>
+</body>
+</html>

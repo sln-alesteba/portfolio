@@ -15,8 +15,8 @@
 <meta property="og:title" content="Endless Procedural Generation" />
 <meta name="author" content="alesteba" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Endless procedural generation in the context of hill racing games. Using procedural content algorithms for edge generation and then create biomes along those shapes. The desert is rendered after the shape has been created, then the cactus are placed on the surface with more procedural algorithms to determine spacing." />
-<meta property="og:description" content="Endless procedural generation in the context of hill racing games. Using procedural content algorithms for edge generation and then create biomes along those shapes. The desert is rendered after the shape has been created, then the cactus are placed on the surface with more procedural algorithms to determine spacing." />
+<meta name="description" content="Generative grammars for biome and shape generation. The grammar rules specify how slopes and shapes can be generated for each biome. Randomly walking a graph generates endless biomes along the car moves in the scene." />
+<meta property="og:description" content="Generative grammars for biome and shape generation. The grammar rules specify how slopes and shapes can be generated for each biome. Randomly walking a graph generates endless biomes along the car moves in the scene." />
 <link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html" />
 <meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html" />
 <meta property="og:site_name" content="sln-alesteba:blog" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Endless Procedural Generation" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2021-10-10T05:44:49-04:00","datePublished":"2021-10-10T05:44:49-04:00","description":"Endless procedural generation in the context of hill racing games. Using procedural content algorithms for edge generation and then create biomes along those shapes. The desert is rendered after the shape has been created, then the cactus are placed on the surface with more procedural algorithms to determine spacing.","headline":"Endless Procedural Generation","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2021-10-10T05:44:49-04:00","datePublished":"2021-10-10T05:44:49-04:00","description":"Generative grammars for biome and shape generation. The grammar rules specify how slopes and shapes can be generated for each biome. Randomly walking a graph generates endless biomes along the car moves in the scene.","headline":"Endless Procedural Generation","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/demos/endless-procedural-generation.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -190,7 +190,7 @@ type="text/javascript">
 
 <hr>
 
-<p>Endless procedural generation in the context of hill racing games. Using procedural content algorithms for edge generation and then create biomes along those shapes. The desert is rendered after the shape has been created, then the cactus are placed on the surface with more procedural algorithms to determine spacing.</p>
+<p>Generative grammars for biome and shape generation. The grammar rules specify how slopes and shapes can be generated for each biome. Randomly walking a graph generates endless biomes along the car moves in the scene.</p>
 
 
 <div class="your-centered-div">
@@ -214,7 +214,9 @@ type="text/javascript">
 
 
   <hr>
-      <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
+      <!-- https://stackoverflow.com/questions/33907566/can-you-use-subdirectories-within-jekylls-includes-folder -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
 
 <h3>Procedural Content Generation !</h3>
 
@@ -263,18 +265,6 @@ type="text/javascript">
         <li>
             <a href="https://sln-alesteba.github.io/portfolio/demos/demo_reel-AAA.html">
                 <img src="https://img.youtube.com/vi/ggb8ZFBzjCs/mqdefault.jpg" alt="icon" height="113" width="200">
-            </a>
-        </li>
-
-        
-
-    
-
-        
-
-        <li>
-            <a href="https://sln-alesteba.github.io/portfolio/demos/procedural-terrain-2D-gen.html">
-                <img src="https://img.youtube.com/vi/pztkXGKcxo0/mqdefault.jpg" alt="icon" height="113" width="200">
             </a>
         </li>
 
@@ -344,8 +334,8 @@ type="text/javascript">
 
 
 <!-- RELATED POSTS -->
-
-<h3>Related Posts</h3>
+<!-- añadir some text here, tener en cuenta cómo diseñar -->
+<!-- <h3>Related Posts</h3> --> -->
 
 
 
@@ -371,8 +361,7 @@ type="text/javascript">
     <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-003.html">Audio Visualization sp.002</a>
     <p>2021-12-05 04:44:49 -0500</p>
     <p>Piano key strokes are more fun when you visualize in some form or another the sound produced.
-Closed spline shape rendered along this small piano track, notice the small fast waves the contour forms.
-Very pleasant effect that could be applied to many more music tracks like this.</p>
+Closed spline shape rendered along this short track, notice the slow-fast waves the contour forms.</p>
 </div>
             
         <br>
@@ -398,7 +387,10 @@ The drums make the shape generate aggressive but very pleasant curves.  </p>
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-001.html">Audio Visualization sp.001</a>
     <p>2021-12-03 04:44:49 -0500</p>
-    <p>This video demonstrates how frequency bands can be used to make dynamic meshes. The mesh is modified at real-time by a redial disposition of those bands. Notice that the code for this representation is being optimized since modifying a mesh every frame is an expensive task no matter how simple...</p>
+    <p>How frequency bands can be used to make dynamic meshes. 
+The shape is modified at real-time by a radial disposition of those bands.
+
+</p>
 </div>
             
         <br>

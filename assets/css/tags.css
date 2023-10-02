@@ -1,0 +1,22 @@
+/* Estilos para los elementos input tipo radio */
+.chip-input {
+    display: none; /* Oculta los inputs reales */
+}
+  
+.chip-label {
+display: inline-flex;
+padding: 4px 8px;
+align-items: flex-start;
+gap: 10px;
+border-radius: 20px;
+border: 1px solid #d8d8d8;
+background: #fff;
+cursor: pointer;
+}
+  
+/* Estilos para los inputs tipo radio seleccionados */
+.chip-input:checked + .chip-label {
+border: 1px solid #00abc8;
+background: #eff9fb;
+color: #00abc8;
+}
