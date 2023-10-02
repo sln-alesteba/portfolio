@@ -1,3 +1,15 @@
+/* .header {
+    padding: 10px;
+    text-align: center;
+    background: #ffffff00;
+    /* background: linear-gradient(to bottom, #777777 0%, #b9b9b9 100%);
+    color: rgb(0, 0, 0);;
+    font-size: 20px;
+
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+} */
+
 .content {
     max-width: 925px;
     margin: auto;
@@ -18,4 +30,83 @@
     top: 0; right: 0; 
     bottom: 0; left: 0;
     margin: auto;
+}
+
+canvas {
+    display: block;
+}
+
+
+table, td, th {
+    border: 1px solid;
+    }
+    
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    
+/* Pagination */
+
+.pages_nav {
+    grid-column: 1 / span 2;
+
+    position: block; 
+
+    margin: auto;
+
+    border-radius: 5px;
+    background-color:rgb(246, 149, 255, 0.5);
+    padding: 5px 10px;
+}
+
+/* Footer */
+
+.footer{
+    padding: 10px;
+    text-align: center;
+    background: #ffffff00;
+    /* background: linear-gradient(to bottom, #777777 0%, #b9b9b9 100%); */
+    color: rgb(0, 0, 0);;
+    font-size: 12px;
+
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.grid-container-footer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    /* background-color: #2196F3; */
+    /* padding: 10px; */
+    }
+
+.grid-container-footer > div {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* background: linear-gradient(to bottom, #414141 0%, #929292 100%); */
+    padding: 0px 10px;
+    font-size: 14px;
+    text-align:left;
+    }
+
+    /* .item4 {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    } */
+
+
+/*animation in the footer*/
+
+.rotate {
+    animation: rotation 8s infinite linear;
+}
+    
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }

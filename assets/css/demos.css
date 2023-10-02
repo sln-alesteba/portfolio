@@ -13,11 +13,6 @@
     text-align:left;
 }
 
-/* 
-.item_demo_1 {
-    text-align: center;
-} */
-
 .item_demo_1 img {
     border: 2px solid rgb(255, 230, 255);
   display: block;
@@ -28,14 +23,17 @@
   background-color:rgb(255, 255, 255, 1.0);
 }
 
-/* .item4 {
-grid-row-start: 1;
-grid-row-end: 3;
-} */
-
 .item_demo_2 {
 
     border-radius: 5px;
     background-color:rgba(73, 73, 73, 0.5);
     padding: 0px 10px;
 }
+
+.itemAA_demo_2 {
+  
+    border-radius: 5px;
+    background-color:#1abc9c;
+    padding: 0px 10px;
+    border: 2px solid rgb(0, 0, 0);
+  }

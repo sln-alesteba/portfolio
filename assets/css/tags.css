@@ -3,15 +3,6 @@
     display: none; /* Oculta los inputs reales */
 }
 
-.form-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-  flex: 1 0 0;
-}
-
-
 body {
   display: flex;
   flex-direction: column;
@@ -43,7 +34,7 @@ cursor: pointer;
   
 /* Estilos para los inputs tipo radio seleccionados */
 .chip-input:checked + .chip-label {
-border: 1px solid #700058;
+border: 1px solid #00abc8;
 background: #eff9fb;
-color: #c8009d;
+color: #00abc8;
 }
