@@ -1,26 +1,28 @@
 
 .tag-container
 {
-    display: block;
+  display: flex;
+  flex-direction: column;
+
     margin: auto;
+    padding: 10px;
 
     border-radius: 10px;
-    background-color:rgba(0, 0, 0, 0.10);
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  flex: 1 0 0;
 }
 
 /* Estilos para los elementos input tipo radio */
 .chip-input {
     display: none; /* Oculta los inputs reales */
 }
-
-/* body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  width: 100%;
-  padding-top: 32px;
-} */
 
 section {
     display: flex;
