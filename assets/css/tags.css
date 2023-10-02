@@ -43,7 +43,7 @@ cursor: pointer;
   
 /* Estilos para los inputs tipo radio seleccionados */
 .chip-input:checked + .chip-label {
-border: 1px solid #00abc8;
+border: 1px solid #700058;
 background: #eff9fb;
-color: #00abc8;
+color: #c8009d;
 }
