@@ -2,6 +2,15 @@
 .chip-input {
     display: none; /* Oculta los inputs reales */
 }
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-bottom: 16px;
+    align-self: stretch;
+  }
   
 .chip-label {
 display: inline-flex;
