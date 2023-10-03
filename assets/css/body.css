@@ -70,7 +70,7 @@ table, td, th {
 .footer{
     padding: 10px;
     text-align: center;
-    background: #1abc9c;
+    background: rgb(0, 0, 0, 0.1);
     /* background: linear-gradient(to bottom, #777777 0%, #b9b9b9 100%); */
     /* color: rgb(0, 0, 0);; */
     font-size: 12px;
