@@ -195,9 +195,13 @@
     .grid-container-prj {
       display: grid;
       /* grid-template-columns: auto auto; */
-      grid-template-columns: repeat( auto-fit, minmax(50.0%, 1fr) );
+      /* grid-template-columns: repeat( auto-fit, minmax(50.0%, 1fr) ); */
       /* background-color: #2196F3; */
       /* padding: 10px; */
+
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      grid-auto-rows: minmax(100px, auto);
 
       gap: 10px;
       /* grid-auto-rows: minmax(100px, auto); */
