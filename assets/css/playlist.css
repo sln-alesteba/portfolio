@@ -33,7 +33,7 @@ div.scroll-container {
 
     border-radius: 5px;
 
-    margin: 0 auto;;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
