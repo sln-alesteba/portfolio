@@ -54,10 +54,9 @@ table {
 /* Pagination */
 
 .pages_nav {
+    
     grid-column: 1 / span 2;
-
     position: block; 
-
     margin: auto;
 
     border-radius: 5px;
