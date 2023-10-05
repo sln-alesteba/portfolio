@@ -56,8 +56,8 @@ table {
 
 .pages_nav {
 
-    grid-column: 1 / span 2;
-    display:flex; 
+    /* grid-column: 1 / span 2; */
+    display: inline;
     margin: auto;
 
     border-radius: 5px;
