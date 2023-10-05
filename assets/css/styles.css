@@ -1,0 +1,11 @@
+/* Estilos para los elementos input tipo radio */
+.chip-input {
+    display: none; /* Oculta los inputs reales */
+}
+
+/* Estilos para los inputs tipo radio seleccionados */
+.chip-input:hover + .chip-label {
+    border: 1px solid #00abc8;
+    background: #eff9fb;
+    color: #00abc8;
+    }
