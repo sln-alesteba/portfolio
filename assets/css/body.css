@@ -44,12 +44,12 @@ canvas {
 
 table, td, th {
     border: 1px solid;
-    }
-    
-    table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-    }
+}
     
 /* Pagination */
 
@@ -61,7 +61,7 @@ table, td, th {
     margin: auto;
 
     border-radius: 5px;
-    background-color:rgb(246, 149, 255, 0.5);
+    background-color:#1abc9cbb;
     padding: 5px 10px;
 }
 
