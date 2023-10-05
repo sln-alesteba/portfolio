@@ -43,8 +43,12 @@ canvas {
 }
 
 
-table, td, th {
+/* table, td, th {
     border: 1px solid;
+} */
+
+table, tr, td {
+    border: none;
 }
 
 table {
