@@ -60,7 +60,7 @@ table {
     text-align: center;
 
     border-radius: 5px;
-    background-color:#1abc9cbb;
+    background-color:rgba(0, 0, 0, 0.1);
     padding: 10px;
 }
 
@@ -74,11 +74,11 @@ table {
     color: black;
     padding: 8px 16px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .pagination a.active {
-    background-color: #4CAF50;
+    background-color: rgba(0, 0, 0, 0.75);;
     color: white;
     border-radius: 5px;
 }
