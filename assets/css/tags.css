@@ -28,12 +28,12 @@ section {
   }
   
 .chip-label {
-display: inline-flex;
-padding: 4px 8px;
-align-items: flex-start;
-gap: 10px;
-border-radius: 20px;
-border: 1px solid #d8d8d8;
-background: #fff;
-cursor: pointer;
+  display: inline-flex;
+  padding: 4px 8px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+  cursor: pointer;
 }
