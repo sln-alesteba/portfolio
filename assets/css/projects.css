@@ -23,7 +23,7 @@
     /* position: relative; */
 }
 
-.grid-item-prj a:focus { outline: 0; }
+.grid-item a:focus { outline: 0; }
 
 .grid-item-prj:hover {
         background-color: rgba(0, 0, 0, 0.2);
