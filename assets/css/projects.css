@@ -24,8 +24,8 @@
     /* position: relative; */
 }
 
-.grid-container-prj a:focus { 
-    outline: 0;
+.grid-container-prj a { 
+
     text-decoration: none;
 }
 
