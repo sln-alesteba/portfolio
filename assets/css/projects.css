@@ -24,7 +24,10 @@
     /* position: relative; */
 }
 
-.grid-container-prj a:focus { outline: 0; }
+.grid-container-prj a:focus { 
+    outline: 0;
+    text-decoration: none;
+}
 
 .grid-item-prj:hover {
         background-color: rgba(0, 0, 0, 0.2);
