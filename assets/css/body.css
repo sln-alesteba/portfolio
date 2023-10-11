@@ -42,18 +42,24 @@ canvas {
     display: block;
 }
 
+table{
+    margin-left: auto; 
+    margin-right: auto; 
 
-/* table, td, th {
-    border: 1px solid;
-} */
+    width: 100%;
+    table-layout: fixed; 
+    border-collapse: collapse;
+}
 
-table, tr, td {
+tr {
     border: none;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+td:nth-child(1) { 
+    border: none;
+    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
 }
     
 /* Pagination */
