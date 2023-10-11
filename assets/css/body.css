@@ -62,7 +62,9 @@ td {
 
 tr:nth-child(1) { 
     border: none;
-    width: 90%;
+    width: 15%;
+    min-width: 15%;
+    max-width: 15%;
 }
     
 /* Pagination */
