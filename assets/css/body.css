@@ -47,24 +47,13 @@ canvas {
     border: 1px solid;
 } */
 
-table{
-    margin-left: auto; 
-    margin-right: auto; 
+table, tr, td {
+    border: none;
+}
 
+table {
     width: 100%;
-    table-layout: fixed; 
     border-collapse: collapse;
-}
-
-td {
-    border: none;
-}
-
-tr:nth-child(1) { 
-    border: none;
-    width: 15%;
-    min-width: 15%;
-    max-width: 15%;
 }
     
 /* Pagination */
