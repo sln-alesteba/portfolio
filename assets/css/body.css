@@ -51,11 +51,12 @@ table{
     border-collapse: collapse;
 }
 
-tr {
+tr, td{
     border: none;
 }
 
-td:nth-child(1) { 
+/* td:nth-child(1) {  */
+td:first-child {
     border: none;
     width: 20%;
     min-width: 20%;
