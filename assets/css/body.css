@@ -47,16 +47,21 @@ canvas {
     border: 1px solid;
 } */
 
-table, tr, td {
-    border: none;
-}
+table{
+    margin-left: auto; 
+    margin-right: auto; 
 
-table {
     width: 100%;
+    table-layout: fixed; 
     border-collapse: collapse;
 }
 
+td {
+    border: none;
+}
+
 tr:nth-child(1) { 
+    border: none;
     width: 25%;
 }
     
