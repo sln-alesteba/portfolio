@@ -1,0 +1,67 @@
+ensemble methods
+
+```{r}
+
+generate_2D <- function(
+
+  n = 1000,
+  step_length = 2,
+  angular_errorSd = 0.5,
+  angular_errorDist = function(n) stats::rnorm(n, sd = angular_errorSd),
+  linear_errorSd = 0.25,
+  linear_errorDist = function(n) stats::rnorm(n, sd = linear_errorSd),
+  
+  # state passing a current df: 
+  
+  traj = data.frame()
+
+) {
+
+  angular_errors <- angular_errorDist(n)
+  linear_errors <- linear_errorDist(n)
+
+  coords  <- complex(n + 1)
+  angle   <- 0
+
+  for (i in 1:n) {
+
+    angle <- angle + angular_errors[i]
+    length <- step_length + linear_errors[i]
+    coords[i + 1] <- coords[i] + complex(modulus = length, argument = angle)
+
+  }
+
+  traj <- data.frame(x=Re(coords), y=Im(coords))
+
+  return(traj)
+
+}
+
+```
+
+
+ver algunas de las posibles formas basadas en la concatenación de diferentes algortmos:
+
+diseñar al menos uno nuevo : 
+
+y cómo llamas al conjunto ¿?
+
+```{r}
+
+n <- 6
+
+par(mfrow = c(2,3))
+
+angularErrorSd <- runif(n, 0, 0.15)
+
+trjs <- lapply(1:n, function(i) generate_2D(250, angular_errorSd = angularErrorSd[i]))
+
+invisible( lapply(1:n, function(i) plot(trjs[[i]]$x, trjs[[i]]$y, type='l') ))
+
+
+```
+
+combining methods: 
+
+
+

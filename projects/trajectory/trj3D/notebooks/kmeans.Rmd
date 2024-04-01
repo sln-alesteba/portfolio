@@ -1,0 +1,98 @@
+We keep working with the extracted data from the previous trajectories.
+
+```{r}
+
+trjs_data <- read.csv("./trjs_data.csv", header=TRUE, stringsAsFactors=FALSE)
+
+trjs_data
+
+```
+
+In this case the K-means algorithm will help in understanding the relationship between the variables, by segmenting them. We start the process with k = 5
+
+```{r}
+
+km.res <- kmeans(trjs_data, 5, nstart = 25)
+
+km.res
+
+```
+We select the trajectory variables from the data set to apply the K-mean and we standardize the variables.
+
+```{r}
+
+traj_estand <- scale(trjs_data)
+
+traj_dist <- dist(traj_estand)
+
+ncluster <- 1:8
+
+distorsion <- sapply(ncluster,function(K) kmeans(traj_estand,
+                                          K,
+                                          nstart = 10)$tot.withinss)
+
+distorsion
+```
+
+
+```{r}
+
+library(ggplot2)
+
+# Scree plot: #clusters vs. distorsion
+
+plot(ncluster,
+    distorsion,
+    type = "b",
+    pch = 19,
+    xlab = "K",
+    ylab = "Distorsión")
+
+traj_kmeans <- kmeans(traj_estand, centers = 2, nstart = 10)
+traj_kmeans
+
+```
+
+```{r}
+
+library(NbClust)
+
+traj_estand_NCCo <- NbClust(traj_estand, method = "complete", max.nc = 4)
+traj_estand_NCS <- NbClust(traj_estand, method = "single", max.nc = 4)
+traj_estand_NCA <- NbClust(traj_estand, method = "average", max.nc = 4)
+traj_estand_NCCe <- NbClust(traj_estand, method = "centroid", max.nc = 4)
+
+```
+
+
+```{r}
+trj_data_pca <- prcomp(traj_estand)
+Grupo <- as.factor(
+        traj_estand_NCA$Best.partition
+        )
+
+ggplot(as.data.frame(trj_data_pca$x),
+      aes(x = PC1, y = PC2, color = Grupo,
+      label = rownames(trjs_data))) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_text()
+```
+
+```{r}
+
+cor(trjs_data)
+
+disimilitud <- 1 - cor(trjs_data)
+disimilitud
+
+cor_dist <- as.dist(disimilitud)
+cor_dist
+
+```
+```{r}
+
+plot(hclust(cor_dist))
+
+```
+

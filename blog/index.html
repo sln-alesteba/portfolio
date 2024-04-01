@@ -501,6 +501,26 @@
         
 
             <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geom_notes';">
+                geom_notes
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="geom_notes" name="geom_notes" value="geom_notes">
+            <label class="chip-label" for="geom_notes">geom_notes</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=curves';">
+                curves
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="curves" name="curves" value="curves">
+            <label class="chip-label" for="curves">curves</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
                     onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=projects';">
                 projects
             </button> 
@@ -523,8 +543,20 @@
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/curvature.html">Parametric Expression Curvature</a>
+    <p>2024-03-23 00:00:01 +0100</p>
+    <p>2024-03-23-curvature The curvature of a parametric expression is a fundamental metric for its analysis, it measures the amount a curve deviates from a straight line. This metric evaluated at a single point is a scalar quantity, instead, other metrics such as the tangent are vectors. In [2]: from sympy import *...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/STIFF_image.html">STIF image classifier</a>
-    <p>2023-07-24 19:00:01 -0400</p>
+    <p>2023-07-25 01:00:01 +0200</p>
     <p>2023-07-25-STIFF_image In [1]: import cv2 as cv2 In [2]: %%capture ! pip install -U "ray[default]" ! pip install bing-image-downloader In [3]: import ray In [4]: context = ray.init() print(context.dashboard_url) 2023-06-11 12:18:14,277 INFO worker.py:1627 -- Started a local Ray instance. View the dashboard at 127.0.0.1:8265 127.0.0.1:8265 In this blog post we'll implement an image classification...</p>
 </div>
 
@@ -536,7 +568,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/2_bezier_MAT.html">Bezier Matrix</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-2_bezier_MAT In [1]: import scipy.special import numpy as np In this final notebook, we are going to compute the Bézier curves as matrix operations. This approach will make it easier to accelerate the computation, since matrix operations can be easily implemented as CUDA kernels. We'll start by writing the general Bézier...</p>
 </div>
 
@@ -548,7 +580,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/1_bezier_CUDA.html">Bezier CUDA</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-1_bezier_CUDA Bézier curves are polynomials of t, they can be implemented using simple polynomials. When a new control point is introduced the curve degree increases making the computational cost rise exponentially. The following code will implement a general method to test n-control points and n-dimension curves. Take a look at...</p>
 </div>
 
@@ -560,25 +592,8 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/0_bezier_PLL.html">Bezier Parallel</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-0_bezier_PLL Introduction¶ In this publication, we are going to understand how general Bézier curves are created, and we'll implement different parallel algorithms to make them run faster. The aim of this post is to handle general curves, that means that we need the mathematical tools to create them. You may...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/NeRF_ficus.html">NeRF - A concrete example, Ficus</a>
-    <p>2023-04-05 18:00:00 -0400</p>
-    <p> 
-	NeRF proposes an ingenious way to synthesize novel views of a scene by modelling the volumetric scene function through a neural network. 
-	The network learns to model the volumetric scene, thus generating novel views (images) of the 3D scene that the model was not shown at training time.
-
-
-</p>
 </div>
 
             <br>

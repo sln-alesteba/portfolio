@@ -1,0 +1,256 @@
+esto es decente: https://github.com/dmurdoch/orientlib
+
+creación and mix en computer graphics, que es a lo que me voy a dedicar:
+
+```{r}
+
+library(orientlib)
+
+library(rotations)
+
+
+
+x <- quaternion(c(1,0,0,0))
+
+y <- quaternion(c(0.5,0.5,1,0))
+
+
+# ok is working: 
+
+# rotation.distance(y,x)
+# 
+# rotation.angle(x)
+
+q <- quaternion(c(0.5,0.5,1,0))
+
+up  <- c(0,1,0)
+
+# print(t(matrix(up)))
+# print(rotmatrix(q)[[1]])
+
+dir <- rotmatrix(q)[[1]] %*% matrix(up)
+
+
+# print(dir)
+
+coords <- data.frame()
+
+# insert first =
+
+coords <- rbind(coords, as.data.frame(t(c(x=0, y=0, z=0))))
+
+last_coord <- as.numeric(tail(coords, n=1))
+
+print(dir)
+print(dir * 2)
+
+print(tail(df, n=1))
+print(last_coord)
+
+p <- last_coord + dir * 1
+
+p
+```
+
+
+```{r}
+
+x <- quaternion(eulerzyx(-1,1,1))
+
+y <- quaternion(c(-1,0,0,1))
+
+print(y)
+
+# ok tengo la operación que quería: 
+
+# tendría que añadir esto al df; y leerlo ; añade primero, 
+# si sale, reproducir operación para angulos; 
+# insertar más o menos a mano el procedimiento; 
+# embrace the challenge: in fact i can make a single post of it; 
+# llegar a probar a renderizar un notebook R en we.
+
+print(orientlib::t(y))
+
+print(quaternion(x %*% t(y)))
+
+m<- quaternion(x %*% t(y))[[1]]
+
+
+m['q1'][[1]]
+```
+
+
+```{r}
+x <- eulerzyx(psi=c(0,pi/4,0,0), theta=c(0,0,pi/4,0), phi=c(0,0,0,pi/4))
+# Need a 3D renderer; assume scatterplot3d, but others could be used
+s <- boat3d(x, 0:3, axes = FALSE, graphics = 'scatterplot3d')
+text(s$xyz.convert(0:3, rep(-0.5,4), rep(-0.5,4)),
+label = c('Id','z','y','x'))
+```
+```{r}
+
+# https://stackoverflow.com/questions/35613741/convert-2-3d-points-to-directional-vectors-to-euler-angles
+
+v_x <- 1
+v_y <- 4
+v_z <- 2
+
+r <- sqrt(v_x^2+v_y^2+v_z^2) 
+TAN_1 <- (v_z)/(v_x)
+TAN_2 <- (v_y)/(v_x^2+v_z^2)
+
+ψ <- atan2(v_z, v_x)
+θ <- atan2(v_y, sqrt(v_x^2+v_z^2))
+
+# ok tengo las coordenadas:
+
+print(ψ)
+print(θ)
+
+# con esto ya tengo la parte de rotación necesaria:
+
+x <- eulerzyx(r,θ,ψ)
+x
+eulerzxz(x)
+rotmatrix(x)
+rotvector(x)
+quaternion(x)
+skewvector(x)
+```
+
+
+```{r}
+
+
+x <- eulerzyx(0,pi/4,0)
+x
+eulerzxz(x)
+rotmatrix(x)
+rotvector(x)
+quaternion(x)
+skewvector(x)
+```
+
+
+```{r}
+# understand the rotations and how to create quaternion data, I need a basic axis to roate from.
+
+# calc rotation matrix between the two vectors and then get the quaternion form: 
+
+# sacar el método para 3D -> y acabar el trabajo con datos en 3D: 
+
+# x <- skewvector(c(1,0,0))
+# x
+# rotmatrix(x)
+# rotation.angle(x)
+
+x <- eulerzyx(1,2,3)
+
+x.
+```
+
+
+```{r}
+Rs <- ruars(n = 20, rangle = rcayley, kappa = 1, space = "SO3")
+
+head(Rs, 3)
+```
+
+```{r}
+Rs <- ruars(50, rcayley, kappa = 10)
+
+region(Rs, method = "direct", type = "asymptotic", estimator = "mean", alp = 0.05)
+
+plot(Rs, center = mean(Rs), col = 1, show_estimates = "all", interactive = FALSE)
+```
+
+```{r}
+plot(Rs, center = mean(Rs), col = 1, show_estimates = "proj.mean", mean_regions = "all", alp = .05, interactive = FALSE)
+```
+
+```{r}
+data(drill)
+head(drill)
+
+Subj1Wrist<-subset(drill, Subject == '1' & Joint == 'Wrist')
+Subj1Wdata <- as.Q4(Subj1Wrist[, 5:8]) # the way to store quaaternion data -> at leats you have it; 
+mean(Subj1Wdata)
+
+```
+
+```{r}
+Qs <- ruars(20, rcayley, space = 'Q4')
+Rs <- as.SO3(Qs)
+
+print(Rs)
+
+suppressMessages(require(orientlib))
+orientRs <- rotvector(matrix(Rs, ncol = 9))
+orientRs
+```
+
+
+
+```{r}
+data(nickel)
+head(nickel[, 1:6])
+Location1<-subset(nickel, location == 1)
+Loc1data<-as.SO3(Location1[, 5:13])
+mean(Loc1data)
+```
+
+
+rotation matrix according to quaternion: 
+
+```{r}
+
+# object of class quaternion -> how to represent it propertly: 
+
+q1 <- quaternion(c(1,0,0,0))
+
+q2 <- quaternion(c(1,2,0,0))
+
+q2 - q1
+
+
+diff( q2, q1)
+
+```
+
+
+save quaterinion into df: 
+
+distance of quaternions:
+
+```{r}
+
+pts <- data.frame()
+
+for (i in 1:10){
+  
+  resample <- quaternion(c(1,0,0,0))
+  
+  print(resample)
+  
+  pts <- rbind(pts, as.data.frame((resample)))
+  
+}
+
+pts
+
+```
+
+```{r}
+
+x <- rotmatrix(diag(3))
+x
+
+# how to rotate those things. 
+
+rotvector(x)
+eulerzyx(x)
+eulerzxz(x)
+quaternion(x)
+
+```
+

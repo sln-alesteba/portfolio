@@ -1,0 +1,145 @@
+```{r setup, include=FALSE}
+
+library(trj3D)
+
+```
+
+```{r}
+
+n <- 6
+
+par(mfrow = c(2,3))
+
+angularErrorSd <- runif(n, 0, 0.15)
+
+trjs <- lapply(1:n, function(i) trj3D::generate_3D(n=25, step_length = 2, angular_errorSd = angularErrorSd[i]))
+
+library(plot3D)
+
+invisible( lapply(1:n, function(i) scatter3D(trjs[[i]]$x, trjs[[i]]$y, trjs[[i]]$z) ))
+
+```
+
+Along this notebook we are going to explore the different variables that can be computed for trajectories. Once those variables are understood and analyzed, PCA, factorial analysis and other methods will give better insight on their interpretation. Let's begin by generating synthetic samples.
+
+```{r}
+
+par(mfrow = c(2,3))
+
+angles <- lapply(1:n, function(i) trj3D::angles_3D2(trjs[[i]]))
+
+invisible( lapply(1:n, function(i) plot(angles[[i]] )) )
+
+```
+To clearly compare the straightness or tortuosiy of the trajectories we plot their angular distributions and autocorrelations:
+
+```{r}
+
+par(mfrow = c(2,3))
+
+angles <- lapply(1:n, function(i) trj3D::angles_3D2(trjs[[i]]))
+
+invisible( lapply(1:n, function(i) plot(density(angles[[i]] ))) )
+
+```
+
+
+```{r}
+
+par(mfrow = c(2,3))
+
+corrs <- lapply(1:n, function(i) trj3D::directionalAutocorrelations(trjs[[i]]))
+
+invisible( lapply(1:n, function(i) plot(corrs[[i]] )) )
+
+```
+The basic data structure for the trajectory has some computed fields, such as the displacement between the points. It is important to distinguish what is already in the trajectory data and the following derivative variables that conforms the input for the PCA analysis.
+
+Variables to study and give more insight about the trajectory.
+
+```{r warning=FALSE}
+
+study_variables <- function(trj) {
+  
+  speed <- speed(trj)
+  accel <- acceleration(trj)
+  
+  speed_mean <- mean(speed$speed)
+  accel_mean <- mean(accel$acceleration)
+  
+  sinuosity <- trj3D::sinuosity(trj)
+  resampled <- trj3D::resample(trj, 1)
+  emax <- trj3D::emax(resampled)
+  direc_change <- mean(trj3D::directionalChange(resampled))
+  
+  corr <- trj3D::directionalAutocorrelations(trj)
+  first_min <- corr[which.min(corr$C),]
+
+  l <- list(
+      speed_mean = speed_mean,
+      accel_mean = accel_mean,
+      sinuosity = sinuosity,
+      Emax = emax,
+      direc_change = direc_change,
+      min_deltaS = first_min[[1]],
+      min_C = first_min[[2]]
+  )
+  
+  return (as.data.frame(l))
+  
+}
+
+trj <- trjs[[1]]
+
+study_variables(trj)
+
+```
+
+Conform a basic data frame with the computed variables.
+
+```{r warning=FALSE}
+
+compute_trajectories <- function(trjs){
+
+  pts <- data.frame()
+  
+  for (i in 1:length(trjs))
+  {
+    yei <- study_variables(trjs[[i]])
+    
+    pts <- rbind(pts, yei)
+  }
+
+  return(pts)
+}
+
+compute_trajectories(trjs)
+
+```
+
+basic descriptive analysis.
+
+```{r}
+
+summary(pts)
+
+```
+
+Let's compute these variables for a larger trajectory set and export to a csv for further analysis.
+
+```{r warning=FALSE}
+
+n <- 50
+
+par(mfrow = c(2,3))
+
+angularErrorSd <- runif(n, 0, 0.15)
+
+trjs <- lapply(1:n, function(i) trj3D::generate_3D(25, angular_errorSd = angularErrorSd[i]))
+
+pts <- compute_trajectories(trjs)
+
+write.csv(pts, "./trjs_data.csv", row.names=FALSE)
+
+```
+

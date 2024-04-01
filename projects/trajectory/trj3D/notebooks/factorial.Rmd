@@ -1,0 +1,179 @@
+The following data set contains essential values from analyzed trajectories. Along this notebook we compute the factor analysis and plot the variable relationships to the factors to get a better understanding of the data.
+
+```{r}
+
+trjs_data <- read.csv("./trjs_data.csv", header=TRUE, stringsAsFactors=FALSE)
+
+trjs_data
+
+```
+
+$$ \begin{align*}
+  
+  x_1 − \mu_1 &= l_{1,1} F_1 + \cdots + l_{1,m} F_m + \epsilon_1 \\
+  
+  &\;\;\vdots \notag \\
+  
+  x_p − \mu_p &= l_{p,1} F_1 + \cdots +l_{p,m} F_m + \epsilon_p
+
+\end{align*} $$
+and into matrix notation: 
+
+$$𝑥 − 𝜇 = 𝐿𝐹 + 𝜀$$
+The coefficient $l_{i,j}$ is the charge of the $i-th$ variable in the $j$ th factor, therefore, $L$ is the loading matrix.
+
+```{r}
+
+X <- trjs_data
+
+p <- ncol(X)
+
+R <- cor(X)
+
+R
+
+```
+
+The eigen() function computes the eigenvalues and eigenvectors simultaneously
+
+```{r}
+
+Reig<- eigen(R)
+
+Reig
+
+```
+
+```{r}
+
+Reig$vectors %*% diag(Reig$values) %*% t(Reig$vectors)
+
+```
+
+Cumulative percentages of variance.
+
+```{r}
+
+100*cumsum(Reig$values)/p
+
+```
+
+We choose the number of factors and compute the estimation of the loading matrix. (in this case m = 2)
+
+$$ L = ( \sqrt{\lambda_1} U_1\quad \vdots \cdots \vdots \quad  \sqrt{\lambda_m} U_m  ) $$
+```{r}
+
+m <- 2
+
+sum(Reig$values[(m + 1):p]) 
+
+L <- (rep(1, p) %*% t(sqrt(Reig$values[1:m]))) * Reig$vectors[, 1:m]
+
+```
+
+Communalities:
+
+$$ h_i^2 = L_{i,1}^2 + \cdots + L_{i,m}^2 $$
+```{r}
+
+h2 <- rowSums(L^2)
+
+h2
+
+```
+
+Uniqueness or specific variance:
+
+```{r}
+
+psi <- 1 - h2
+
+psi
+
+```
+
+
+```{r}
+
+Rscr<- L%*%t(L) + diag(psi)
+
+Rscr
+
+```
+
+```{r}
+
+D <- R - Rscr
+
+sum(D^2)
+
+```
+
+Graphic representation of the loadings in the factor space.
+
+```{r}
+
+L <- as.data.frame(L)
+rownames(L) <- colnames(X)
+colnames(L) <- c("F1", "F2")
+
+library(ggplot2)
+ggplot(L, aes(x = F1, y = F2, label = rownames(L))) +
+geom_hline(yintercept = 0, lty = 2) +
+geom_vline(xintercept = 0, lty = 2) +
+geom_text()
+
+```
+Factor rotation: varimax method
+
+$$ 𝑥 − \mu = LF + \epsilon = LTT′ 𝐹𝐹 + \epsilon = (LT) (T′𝐹) + \epsilon = L^*F^*+ \epsilon$$
+```{r}
+
+vmax_L <- varimax(as.matrix(L))
+
+```
+
+Graphic representation of the loadings in the space of the rotated factors.
+
+```{r}
+
+Lstar <- as.data.frame(vmax_L$loadings[, 1:m])
+
+rownames(Lstar) <- colnames(X)
+colnames(Lstar) <- c("F1", "F2")
+
+ggplot(Lstar, aes(x = F1, y = F2, label = rownames(Lstar))) +
+geom_hline(yintercept = 0, lty = 2) +
+geom_vline(xintercept = 0, lty = 2) +
+geom_text()
+
+```
+
+The following library uses the previous method and provides functions to easily display and plot the principal components. Within this example we factor into two components and show the relationship between the calculated factors and the data set variables.
+
+```{r message=FALSE}
+
+library(psych)
+
+trjs_af <- principal(X, nfactors = 2, rotate = "none")
+
+trjs_af
+
+```
+
+```{r}
+
+trjs_af$values
+trjs_af$loadings
+trjs_af$communality
+
+```
+
+
+```{r}
+
+fa.diagram(trjs_af)
+
+```
+
+

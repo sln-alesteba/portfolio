@@ -1,0 +1,79 @@
+time series analysis and clustering:
+
+```{r}
+n <- 100
+x <- arima.sim(model = list(ar = 0.99), n=n)
+m <- 80
+y <- arima.sim(model = list(ar = 0.99), n=m)
+eps <- 1
+delta <- 5
+L <- matrix(nrow=n, ncol=m)
+for(i in 1:n){
+  for(j in 1:m){
+    if(i == 1 || j == 1){
+      L[i,j] <- 0
+    }else if(abs(x[i] - y[j]) < eps && abs(i-j) < delta){
+      L[i,j] <- 1 + L[i-1, j-1]
+    }else{
+      L[i,j] <- max(L[i-1, j], L[i, j-1])
+    }
+  }
+}
+plot(x, col="blue")
+lines(y, col="red")
+title(paste0("LCSS: ", round(L[n,m], 2)))
+```
+# https://rpubs.com/imartinezl/tsclustering
+
+```{r}
+
+heatmap(L, Rowv = NA, Colv = NA)
+
+```
+
+```{r}
+# ARIMA
+x <- arima.sim(model = list(ar=0.999), n=100)
+plot(x)
+```
+
+```{r}
+# AM
+n <- 100
+x <- numeric(n)
+x[1] <- 0
+for(i in 2:n){
+  x[i] <- 0.9*x[i-1] + rnorm(1, 0, 0.1)
+}
+plot(x); lines(x)
+```
+
+```{r}
+# MA
+n <- 100
+x <- numeric(n)
+eps <- numeric(n)
+x[1] <- 0
+eps[1] <- 0
+for(i in 2:n){
+  eps[i] <- 0.999*eps[i-1] + rnorm(1, 0, 0.1)
+  x[i] <- eps[i] + rnorm(1, 0, 0.1)
+}
+plot(x); lines(x)
+```
+de aquí tienes que sacar algo: 
+
+https://www.theaidream.com/post/dynamic-time-warping-dtw-algorithm-in-time-series
+
+dedrogram and time series: 
+
+# http://rstudio-pubs-static.s3.amazonaws.com/398402_abe1a0343a4e4e03977de8f3791e96bb.html
+
+
+y dedrogram for dynamic time warping of the series: 
+
+
+
+https://rpubs.com/sebas_Alf/684217
+
+aqui: 

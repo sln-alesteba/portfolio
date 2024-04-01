@@ -502,6 +502,26 @@
         
 
             <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geom_notes';">
+                geom_notes
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="geom_notes" name="geom_notes" value="geom_notes">
+            <label class="chip-label" for="geom_notes">geom_notes</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=curves';">
+                curves
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="curves" name="curves" value="curves">
+            <label class="chip-label" for="curves">curves</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
                     onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=projects';">
                 projects
             </button> 
@@ -524,8 +544,20 @@
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/latex-markdow-jekyll.html">LateX for markdown (.md) in Jekyll</a>
+    <p>2022-07-29 02:00:00 +0200</p>
+    <p>This is for anyone looking for how to use lateX whitin markdown (.md) files for jekyll. Jekyll won’t process the latex code, it has to be done in the browser with javascript. Include the following script calling CDN in the layout that contains your blog-post: &lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt; &lt;/script&gt; \[W...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/networkx-graph-traversal.html">NetworkX Graph Random Walk</a>
-    <p>2022-07-27 20:00:00 -0400</p>
+    <p>2022-07-28 02:00:00 +0200</p>
     <p>graph_traverse NetworkX is powerfull python library for working with big graph structures. Let's analyze how to randomly walk directed graphs. In&nbsp;[52]: import pylab as p import networkx as nx import numpy as np import random In&nbsp;[53]: G = nx.DiGraph() G.add_edge("A","B") G.add_edge("A","H") G.add_edge("H","C") G.add_edge("B","C") G.add_edge("B","D") nx.draw(G) p.show() Randomly traversing a graph...</p>
 </div>
 
@@ -537,7 +569,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/random-vector-within-cone.html">Random Vector within Cone</a>
-    <p>2022-07-26 20:00:00 -0400</p>
+    <p>2022-07-27 02:00:00 +0200</p>
     <p>Rendering engines use Quaterinions for complex rotations in 3D-space. Here, a different approach is going to be use to generate a random vector within a defined cone. Follow the next steps: Generate a random unit vector. coneDirection = (pl1- pl2) / np.linalg.norm(coneDirection) randomVector = v / np.linalg.norm(v) Project this vector...</p>
 </div>
 
@@ -549,7 +581,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/rendering_engine_architecture.html">Rendering Engine Architecture</a>
-    <p>2022-07-20 11:00:00 -0400</p>
+    <p>2022-07-20 17:00:00 +0200</p>
     <p>Graphics Library vs Rendering Engine OpenGL is a graphics library with many functions for drawing complex geometries based on more simple geometry primitives such as points, lines and triangles. A rendering engine is a well defined framework that uses some of the graphics library functions to deliver a simple way...</p>
 </div>
 
@@ -561,20 +593,8 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/matrix_transformations.html">Matrix Transformation for Rendering 3D objects</a>
-    <p>2022-07-20 11:00:00 -0400</p>
+    <p>2022-07-20 17:00:00 +0200</p>
     <p>Transformations are at the core of any rendering engine. Vectors and matrices are the basic data structures that allow to design and create functions to transform set of points in certain geometric way. Points / Vectors / Matrices Both points and vectors are represented by a list of numbers, but...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/git_automation.html">Git Commit Automation with Python</a>
-    <p>2022-07-20 11:00:00 -0400</p>
-    <p>This web page is a small complex piece of software. There are a few layers that composes the web, having jekyll as the backend and standard html, css, and javascript on the front-end. Since jekyll is a lightweight static web page generator, the site has to be built before uploading...</p>
 </div>
 
             <br>

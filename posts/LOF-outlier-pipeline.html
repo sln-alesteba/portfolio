@@ -21,11 +21,11 @@
 <meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/posts/LOF-outlier-pipeline.html" />
 <meta property="og:site_name" content="sln-alesteba:blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-03-04T17:00:00-05:00" />
+<meta property="article:published_time" content="2023-03-04T23:00:00+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="LOF Outlier Imblearn Pipeline" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2023-03-04T17:00:00-05:00","datePublished":"2023-03-04T17:00:00-05:00","description":"&lt;!DOCTYPE html&gt; 2023-03-11-LOF-outlier-pipeline In this post we examine how to append a local outlier factor method to a regular pipeline, but using imblearn ones. Lets review how to use pipelines when the shape of the dataset need to be modified, such as with outlier removal. In&nbsp;[17]: import pandas as pd import numpy as np In&nbsp;[18]: # import a basic dataset. df = pd.read_csv(&#39;data/housing.csv&#39;, na_values=&#39;?&#39;) df.head() Out[18]: 0.00632 18.00 2.310 0 0.5380 6.5750 65.20 4.0900 1 296.0 15.30 396.90 4.98 24.00 0 0.02731 0.0 7.07 0 0.469 6.421 78.9 4.9671 2 242.0 17.8 396.90 9.14 21.6 1 0.02729 0.0 7.07 0 0.469 7.185 61.1 4.9671 2 242.0 17.8 392.83 4.03 34.7 2 0.03237 0.0 2.18 0 0.458 6.998 45.8 6.0622 3 222.0 18.7 394.63 2.94 33.4 3 0.06905 0.0 2.18 0 0.458 7.147 54.2 6.0622 3 222.0 18.7 396.90 5.33 36.2 4 0.02985 0.0 2.18 0 0.458 6.430 58.7 6.0622 3 222.0 18.7 394.12 5.21 28.7 In&nbsp;[19]: # define target variable In&nbsp;[20]: # https://www.kaggle.com/code/jonaspalucibarbosa/removing-outliers-within-a-pipeline # interquartile mehtod for outlier detection def customsampler_IQR (X, y): features = X.columns df = X.copy() df[&#39;Outcome&#39;] = y indices = [x for x in df.index] out_indexlist = [] for col in features: Q1 = np.nanpercentile(df[col], 25.) Q3 = np.nanpercentile(df[col], 75.) cut_off = (Q3 - Q1) * 1.5 upper, lower = Q3 + cut_off, Q1 - cut_off outliers_index = df[col][(df[col] &lt; lower) | (df[col] &gt; upper)].index.tolist() outliers = df[col][(df[col] &lt; lower) | (df[col] &gt; upper)].values out_indexlist.extend(outliers_index) out_indexlist = list(set(out_indexlist)) clean_data = np.setdiff1d(indices,out_indexlist) return X.loc[clean_data], y.loc[clean_data] In&nbsp;[21]: last_ix = len(df.columns) - 1 X = df.drop(df.columns[last_ix], axis=1) y = df[df.columns[last_ix]] print(X.shape, y.shape) (505, 13) (505,) Now we can use an imblearn pipeline (since the shape of the y can be changed) and apply the transformation to the original dataset. The usage of the previous defined function is straightforward, create a new step and embed it into a FunctionSampler. In&nbsp;[22]: # use of imblearn pipelines from sklearn.model_selection import train_test_split from imblearn.pipeline import Pipeline from imblearn import FunctionSampler # define the pipeline clf = Pipeline( steps=[ (&#39;o&#39;, FunctionSampler(func=customsampler_IQR, validate = False)) ] ) clf.fit(X, y) X_enc, y_enc = clf.fit_resample(X, y) X_enc.shape Out[22]: (274, 13) In&nbsp;[23]: X_enc Out[23]: 0.00632 18.00 2.310 0 0.5380 6.5750 65.20 4.0900 1 296.0 15.30 396.90 4.98 0 0.02731 0.0 7.07 0 0.469 6.421 78.9 4.9671 2 242.0 17.8 396.90 9.14 1 0.02729 0.0 7.07 0 0.469 7.185 61.1 4.9671 2 242.0 17.8 392.83 4.03 2 0.03237 0.0 2.18 0 0.458 6.998 45.8 6.0622 3 222.0 18.7 394.63 2.94 3 0.06905 0.0 2.18 0 0.458 7.147 54.2 6.0622 3 222.0 18.7 396.90 5.33 4 0.02985 0.0 2.18 0 0.458 6.430 58.7 6.0622 3 222.0 18.7 394.12 5.21 ... ... ... ... ... ... ... ... ... ... ... ... ... ... 500 0.06263 0.0 11.93 0 0.573 6.593 69.1 2.4786 1 273.0 21.0 391.99 9.67 501 0.04527 0.0 11.93 0 0.573 6.120 76.7 2.2875 1 273.0 21.0 396.90 9.08 502 0.06076 0.0 11.93 0 0.573 6.976 91.0 2.1675 1 273.0 21.0 396.90 5.64 503 0.10959 0.0 11.93 0 0.573 6.794 89.3 2.3889 1 273.0 21.0 393.45 6.48 504 0.04741 0.0 11.93 0 0.573 6.030 80.8 2.5050 1 273.0 21.0 396.90 7.88 274 rows × 13 columns And finally, we use it with a machine learning model. The process is completly reusable, just add another step to the pipeline after the IQR method. The following cell uses imputaton strategies, data scalation and a simple LinearDiscriminantAnalysis at the end of the preprocess transformations. In&nbsp;[24]: from imblearn import FunctionSampler from imblearn.pipeline import pipeline In&nbsp;[25]: from sklearn.discriminant_analysis import LinearDiscriminantAnalysis from sklearn.impute import SimpleImputer from sklearn.model_selection import RepeatedStratifiedKFold, cross_val_score from sklearn.preprocessing import MinMaxScaler In&nbsp;[&nbsp;]: model = LinearDiscriminantAnalysis() strategies = [&#39;mean&#39;, &#39;median&#39;, &#39;most_frequent&#39;, &#39;constant&#39;] trans = MinMaxScaler() results = [] for s in strategies: # create the modeling pipeline pipe = Pipeline( steps=[ (&#39;o&#39;, FunctionSampler(func=customsampler_IQR, validate = False)), (&#39;i&#39;, SimpleImputer(strategy=s)), (&#39;t&#39;, trans), (&#39;m&#39;, model), ]) # evaluate the model cv = RepeatedStratifiedKFold(n_splits=2, n_repeats=5, random_state=1) scores = cross_val_score(pipe, X, y, scoring=&#39;accuracy&#39;, cv=cv, n_jobs=-1,error_score=&quot;raise&quot;) #array # store results results.append(scores) # print print(&#39;&gt;%s %.3f (%.3f)&#39; % (s, np.mean(scores), np.std(scores)))","headline":"LOF Outlier Imblearn Pipeline","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/posts/LOF-outlier-pipeline.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/posts/LOF-outlier-pipeline.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2023-03-04T23:00:00+01:00","datePublished":"2023-03-04T23:00:00+01:00","description":"&lt;!DOCTYPE html&gt; 2023-03-11-LOF-outlier-pipeline In this post we examine how to append a local outlier factor method to a regular pipeline, but using imblearn ones. Lets review how to use pipelines when the shape of the dataset need to be modified, such as with outlier removal. In&nbsp;[17]: import pandas as pd import numpy as np In&nbsp;[18]: # import a basic dataset. df = pd.read_csv(&#39;data/housing.csv&#39;, na_values=&#39;?&#39;) df.head() Out[18]: 0.00632 18.00 2.310 0 0.5380 6.5750 65.20 4.0900 1 296.0 15.30 396.90 4.98 24.00 0 0.02731 0.0 7.07 0 0.469 6.421 78.9 4.9671 2 242.0 17.8 396.90 9.14 21.6 1 0.02729 0.0 7.07 0 0.469 7.185 61.1 4.9671 2 242.0 17.8 392.83 4.03 34.7 2 0.03237 0.0 2.18 0 0.458 6.998 45.8 6.0622 3 222.0 18.7 394.63 2.94 33.4 3 0.06905 0.0 2.18 0 0.458 7.147 54.2 6.0622 3 222.0 18.7 396.90 5.33 36.2 4 0.02985 0.0 2.18 0 0.458 6.430 58.7 6.0622 3 222.0 18.7 394.12 5.21 28.7 In&nbsp;[19]: # define target variable In&nbsp;[20]: # https://www.kaggle.com/code/jonaspalucibarbosa/removing-outliers-within-a-pipeline # interquartile mehtod for outlier detection def customsampler_IQR (X, y): features = X.columns df = X.copy() df[&#39;Outcome&#39;] = y indices = [x for x in df.index] out_indexlist = [] for col in features: Q1 = np.nanpercentile(df[col], 25.) Q3 = np.nanpercentile(df[col], 75.) cut_off = (Q3 - Q1) * 1.5 upper, lower = Q3 + cut_off, Q1 - cut_off outliers_index = df[col][(df[col] &lt; lower) | (df[col] &gt; upper)].index.tolist() outliers = df[col][(df[col] &lt; lower) | (df[col] &gt; upper)].values out_indexlist.extend(outliers_index) out_indexlist = list(set(out_indexlist)) clean_data = np.setdiff1d(indices,out_indexlist) return X.loc[clean_data], y.loc[clean_data] In&nbsp;[21]: last_ix = len(df.columns) - 1 X = df.drop(df.columns[last_ix], axis=1) y = df[df.columns[last_ix]] print(X.shape, y.shape) (505, 13) (505,) Now we can use an imblearn pipeline (since the shape of the y can be changed) and apply the transformation to the original dataset. The usage of the previous defined function is straightforward, create a new step and embed it into a FunctionSampler. In&nbsp;[22]: # use of imblearn pipelines from sklearn.model_selection import train_test_split from imblearn.pipeline import Pipeline from imblearn import FunctionSampler # define the pipeline clf = Pipeline( steps=[ (&#39;o&#39;, FunctionSampler(func=customsampler_IQR, validate = False)) ] ) clf.fit(X, y) X_enc, y_enc = clf.fit_resample(X, y) X_enc.shape Out[22]: (274, 13) In&nbsp;[23]: X_enc Out[23]: 0.00632 18.00 2.310 0 0.5380 6.5750 65.20 4.0900 1 296.0 15.30 396.90 4.98 0 0.02731 0.0 7.07 0 0.469 6.421 78.9 4.9671 2 242.0 17.8 396.90 9.14 1 0.02729 0.0 7.07 0 0.469 7.185 61.1 4.9671 2 242.0 17.8 392.83 4.03 2 0.03237 0.0 2.18 0 0.458 6.998 45.8 6.0622 3 222.0 18.7 394.63 2.94 3 0.06905 0.0 2.18 0 0.458 7.147 54.2 6.0622 3 222.0 18.7 396.90 5.33 4 0.02985 0.0 2.18 0 0.458 6.430 58.7 6.0622 3 222.0 18.7 394.12 5.21 ... ... ... ... ... ... ... ... ... ... ... ... ... ... 500 0.06263 0.0 11.93 0 0.573 6.593 69.1 2.4786 1 273.0 21.0 391.99 9.67 501 0.04527 0.0 11.93 0 0.573 6.120 76.7 2.2875 1 273.0 21.0 396.90 9.08 502 0.06076 0.0 11.93 0 0.573 6.976 91.0 2.1675 1 273.0 21.0 396.90 5.64 503 0.10959 0.0 11.93 0 0.573 6.794 89.3 2.3889 1 273.0 21.0 393.45 6.48 504 0.04741 0.0 11.93 0 0.573 6.030 80.8 2.5050 1 273.0 21.0 396.90 7.88 274 rows × 13 columns And finally, we use it with a machine learning model. The process is completly reusable, just add another step to the pipeline after the IQR method. The following cell uses imputaton strategies, data scalation and a simple LinearDiscriminantAnalysis at the end of the preprocess transformations. In&nbsp;[24]: from imblearn import FunctionSampler from imblearn.pipeline import pipeline In&nbsp;[25]: from sklearn.discriminant_analysis import LinearDiscriminantAnalysis from sklearn.impute import SimpleImputer from sklearn.model_selection import RepeatedStratifiedKFold, cross_val_score from sklearn.preprocessing import MinMaxScaler In&nbsp;[&nbsp;]: model = LinearDiscriminantAnalysis() strategies = [&#39;mean&#39;, &#39;median&#39;, &#39;most_frequent&#39;, &#39;constant&#39;] trans = MinMaxScaler() results = [] for s in strategies: # create the modeling pipeline pipe = Pipeline( steps=[ (&#39;o&#39;, FunctionSampler(func=customsampler_IQR, validate = False)), (&#39;i&#39;, SimpleImputer(strategy=s)), (&#39;t&#39;, trans), (&#39;m&#39;, model), ]) # evaluate the model cv = RepeatedStratifiedKFold(n_splits=2, n_repeats=5, random_state=1) scores = cross_val_score(pipe, X, y, scoring=&#39;accuracy&#39;, cv=cv, n_jobs=-1,error_score=&quot;raise&quot;) #array # store results results.append(scores) # print print(&#39;&gt;%s %.3f (%.3f)&#39; % (s, np.mean(scores), np.std(scores)))","headline":"LOF Outlier Imblearn Pipeline","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/posts/LOF-outlier-pipeline.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/posts/LOF-outlier-pipeline.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -15552,8 +15552,20 @@ The following cell uses imputaton strategies, data scalation and a simple Linear
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/curvature.html">Parametric Expression Curvature</a>
+    <p>2024-03-23 00:00:01 +0100</p>
+    <p>{% raw %} 2024-03-23-curvature The curvature of a parametric expression is a fundamental metric for its analysis, it measures the amount a curve deviates from a straight line. This metric evaluated at a single point is a scalar quantity, instead, other metrics such as the tangent are vectors. In [2]: from...</p>
+</div>
+                
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/STIFF_image.html">STIF image classifier</a>
-    <p>2023-07-24 19:00:01 -0400</p>
+    <p>2023-07-25 01:00:01 +0200</p>
     <p>2023-07-25-STIFF_image In [1]: import cv2 as cv2 In [2]: %%capture ! pip install -U "ray[default]" ! pip install bing-image-downloader In [3]: import ray In [4]: context = ray.init() print(context.dashboard_url) 2023-06-11 12:18:14,277 INFO worker.py:1627 -- Started a local Ray instance. View the dashboard at 127.0.0.1:8265 127.0.0.1:8265 In this blog post we'll implement an image classification...</p>
 </div>
                 
@@ -15565,7 +15577,7 @@ The following cell uses imputaton strategies, data scalation and a simple Linear
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/2_bezier_MAT.html">Bezier Matrix</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-2_bezier_MAT In [1]: import scipy.special import numpy as np In this final notebook, we are going to compute the Bézier curves as matrix operations. This approach will make it easier to accelerate the computation, since matrix operations can be easily implemented as CUDA kernels. We'll start by writing the general Bézier...</p>
 </div>
                 
@@ -15577,7 +15589,7 @@ The following cell uses imputaton strategies, data scalation and a simple Linear
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/1_bezier_CUDA.html">Bezier CUDA</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-1_bezier_CUDA Bézier curves are polynomials of t, they can be implemented using simple polynomials. When a new control point is introduced the curve degree increases making the computational cost rise exponentially. The following code will implement a general method to test n-control points and n-dimension curves. Take a look at...</p>
 </div>
                 
@@ -15589,25 +15601,8 @@ The following cell uses imputaton strategies, data scalation and a simple Linear
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/0_bezier_PLL.html">Bezier Parallel</a>
-    <p>2023-07-23 19:00:01 -0400</p>
+    <p>2023-07-24 01:00:01 +0200</p>
     <p>2023-07-24-0_bezier_PLL Introduction¶ In this publication, we are going to understand how general Bézier curves are created, and we'll implement different parallel algorithms to make them run faster. The aim of this post is to handle general curves, that means that we need the mathematical tools to create them. You may...</p>
-</div>
-                
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/NeRF_ficus.html">NeRF - A concrete example, Ficus</a>
-    <p>2023-04-05 18:00:00 -0400</p>
-    <p> 
-	NeRF proposes an ingenious way to synthesize novel views of a scene by modelling the volumetric scene function through a neural network. 
-	The network learns to model the volumetric scene, thus generating novel views (images) of the 3D scene that the model was not shown at training time.
-
-
-</p>
 </div>
                 
             <br>

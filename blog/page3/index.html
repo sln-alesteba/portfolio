@@ -502,6 +502,26 @@
         
 
             <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geom_notes';">
+                geom_notes
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="geom_notes" name="geom_notes" value="geom_notes">
+            <label class="chip-label" for="geom_notes">geom_notes</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=curves';">
+                curves
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="curves" name="curves" value="curves">
+            <label class="chip-label" for="curves">curves</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
                     onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=projects';">
                 projects
             </button> 
@@ -524,8 +544,20 @@
             <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
 
 <div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/k-means-pll.html">K-Means Parallel Python Implementation</a>
+    <p>2022-10-07 00:00:00 +0200</p>
+    <p>2022-11-13-k-means-pll This post explores the possibilities of a simple k-means implementation. The algorithm uses the center_asignment function with a parallel approach. Take a look at the github links below to see the code and then explore the call graphs for both serial and parallel executions. Python multiprocessing creates an important...</p>
+</div>
+
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/recursive-graph-neighbours.html">Recursive Graph Neighbours</a>
-    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-10-07 00:00:00 +0200</p>
     <p>2022-11-12-graph-depth In&nbsp;[1]: import networkx as nx import matplotlib.pyplot as plt In&nbsp;[2]: G = nx.gnp_random_graph(100, 0.075, seed=None, directed=False) In&nbsp;[3]: nx.draw(G) In&nbsp;[4]: def neigh(G, node, depth): node_list = [] if depth==0: node_list.append(node) else: for neighbor in G.neighbors(node): node_list.append(node) node_list += neigh(G, neighbor, depth-1) return list(set(node_list)) In&nbsp;[5]: # For 10 random nodes, draw...</p>
 </div>
 
@@ -537,7 +569,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/map-filter-reduce-recursive.html">Recursive / Map - Filter - Reduce</a>
-    <p>2022-10-06 18:00:00 -0400</p>
+    <p>2022-10-07 00:00:00 +0200</p>
     <p>2022-10-03-recursive-definitions In&nbsp;[&nbsp;]: def map_rec(f,l): if l == []: return l else: h = map_rec(f,l[1:]) h.insert(0,f(l[0])) return(h) In&nbsp;[&nbsp;]: def filter_rec(f, l): if l == []: return l else: h = filter_rec(f,l[1:]) if f(l[0]): h.insert(0,l[0]) return(h) In&nbsp;[&nbsp;]: def reduce_rec(f, l, s): if l == []: return l elif len(l) == 1: return...</p>
 </div>
 
@@ -549,7 +581,7 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/clousure-callback.html">Clousures as Callbacks</a>
-    <p>2022-10-02 20:00:00 -0400</p>
+    <p>2022-10-03 02:00:00 +0200</p>
     <p>2022-10-03-clousure-callback Clousere definition: In&nbsp;[&nbsp;]: def func1(): var = "Enclosed Function" def func2(): var = "Nested Function" print(var) return func2 res = func1() res Returning a function allows us to execute something previously defined when that process ends. Without actually defining a class, we can group the definition of a procedure...</p>
 </div>
 
@@ -561,20 +593,8 @@
 
 <div class="post">
     <a href="https://sln-alesteba.github.io/portfolio/posts/hide-cells-jupyter-notebook-source.html">Hide Cells in Jupyter Notebook From Source</a>
-    <p>2022-07-28 20:00:00 -0400</p>
+    <p>2022-07-29 02:00:00 +0200</p>
     <p>2022-11-12-hide_cells_jupyter In&nbsp;[6]: import nbformat as nbf from glob import glob def hide_cells_jupiter(file_path): # Text to look for in adding tags text_search_dict = { "# HIDDEN": "remove-cell", # Remove the whole cell "# NO CODE": "remove-input", # Remove only the input "# HIDE CODE": "hide-input" # Hide the input w/ a...</p>
-</div>
-
-            <br>
-
-    
-
-            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
-
-<div class="post">
-    <a href="https://sln-alesteba.github.io/portfolio/posts/latex-markdow-jekyll.html">LateX for markdown (.md) in Jekyll</a>
-    <p>2022-07-28 20:00:00 -0400</p>
-    <p>This is for anyone looking for how to use lateX whitin markdown (.md) files for jekyll. Jekyll won’t process the latex code, it has to be done in the browser with javascript. Include the following script calling CDN in the layout that contains your blog-post: &lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt; &lt;/script&gt; \[W...</p>
 </div>
 
             <br>

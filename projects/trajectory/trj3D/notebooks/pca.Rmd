@@ -1,0 +1,144 @@
+The following data set contains essential variables from analyzed trajectories. 
+
+```{r}
+
+trjs_data <- read.csv("./trjs_data.csv", header=TRUE, stringsAsFactors=FALSE)
+
+trjs_data
+
+```
+
+Let's begin by implementing the PCA method from scratch.
+
+```{r}
+
+X <- as.matrix(trjs_data)
+p <- ncol(X)
+S <- cov(X)
+var_tot <- sum(diag(S))
+var_tot
+
+```
+
+The eigenvalues determine the variances of the components, with this we can calculate the percentage of total variance accumulated by the first k components.
+
+```{r}
+
+S_vvprop <- eigen(S)
+sum(S_vvprop$values)
+100*cumsum(S_vvprop$values)/var_tot
+
+```
+
+Scree plot to find the elbow knot. 
+
+```{r}
+
+plot(1:p,
+      S_vvprop$values,
+      type = "b",
+      pch = 19,
+      xlab = "#CP",
+      ylab = "Varianza")
+
+```
+Choosing two main components, we calculate the scores on the two principal components and visualize the results.
+
+```{r}
+
+k <- 2
+X_star <- scale(X, scale = FALSE)
+Y <- X_star %*% S_vvprop$vectors[, 1:k]
+
+summary(Y)
+head(Y)
+cov(Y)
+
+```
+The loadings and correlations help us to interpret the results
+
+```{r}
+
+S_vvprop$vectors[, 1:k]
+
+cor(X, Y)
+    
+```
+The rest of the notebook uses the R implementation for the PCA method.
+
+```{r}
+
+res.pca <- prcomp(trjs_data, scale = TRUE)
+
+print(res.pca)
+
+```
+
+```{r}
+
+summary(res.pca)
+
+```
+
+
+```{r}
+
+library(ggplot2) 
+
+library(ggfortify) 
+
+res.pca.plot <- autoplot(res.pca, 
+                         loadings = TRUE, 
+                         loadings.label = TRUE) 
+res.pca.plot
+
+```
+
+A few organized plots for explaining the variance.
+
+```{r}
+
+# a few plots for explaining the variance.
+
+pcaCharts <- function(x) {
+  
+    x.var <- x$sdev ^ 2
+    x.pvar <- x.var/sum(x.var)
+    
+    par(mfrow=c(2,2))
+    plot(x.pvar, 
+         xlab="Principal component", 
+         ylab="Prop. of variance explained", 
+         ylim=c(0,1), type='b')
+    plot(cumsum(x.pvar),
+         xlab="Principal component", 
+         ylab="Cum. Prop. of variance explained", 
+         ylim=c(0,1), type='b')
+    
+    screeplot(x)
+    screeplot(x,type="l")
+    
+    par(mfrow=c(1,1))
+}
+
+pcaCharts(res.pca)
+```
+Finally we represent the principal component analysis with two components using the psych libraray.
+
+```{r}
+
+library(psych)
+
+Hate_AF <- principal(trjs_data, nfactors = 2)
+
+Hate_AF
+
+```
+
+```{r}
+
+fa.diagram(Hate_AF)
+
+```
+
+

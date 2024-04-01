@@ -1,0 +1,138 @@
+```{r}
+
+library(trj3D)
+
+library(orientlib)
+
+```
+
+We call rediscretization to the process of transforming a trajectory to fixed step length. Too small step length leads to oversampling, ( high autocorrelation & variability ); too large a step length results in under sampling and loss of information.
+
+The following examples take a synthetic trajectory generated with normal step length values and rediscretizates the samples to a fixed step length. Also, different algorithms for the process will be discussed.
+
+```{r}
+
+trj <- trj3D::generate_3D(n=25, step_length = 1.23, angular_errorSd = .5)
+
+library(plot3D)
+
+lines3D(trj$x, trj$y, trj$z) 
+
+```
+
+The directional autocorrelation function presents a good method for understanding the straightness of the trajectory, detecting regular and irregular angular patterns within it.
+
+```{r}
+
+corr <- trj3D::directionalAutocorrelations(trj)
+
+plot(corr)
+
+```
+
+At this stage, the displacement value at the pairwise values follows a normal distribution based on the parameters used for the trajectory generation.
+
+```{r}
+
+trj
+
+```
+
+The following algorithms uses the function *pointAt* to rediscretize the trajectory path in a non efficient method. Conceptually is the simplest form for understanding the procedure, but state has not been taken into consideration.
+
+```{r}
+
+trj3D::stepLengths(trj)
+
+```
+
+Call them individually
+
+```{r}
+
+trj3D::pointAt(trj, 1)
+
+trj3D::pointAt(trj, 1.15)
+
+trj3D::pointAt(trj, 2.22)
+
+trj3D::pointAt(trj, 10.5)
+
+trj3D::pointAt(trj, 25.25)
+
+```
+
+```{r}
+
+trj <- trj3D::generate_3D(n=50)
+
+pts <- data.frame()
+
+currStep <- 0
+
+stepSize <- 1
+
+length <- sum(trj3D::stepLengths(trj))
+
+while(currStep < length)
+{
+  res = trj3D::pointAt(trj, currStep)
+  
+  resample <- c ( x = res['delta.x'][[1]], y = res['delta.y'][[1]], z = res['delta.z'][[1]] )
+  
+  pts <- rbind(pts, as.data.frame(t(resample)))
+  
+  currStep <- currStep + stepSize
+}
+
+pts
+
+```
+
+Once the rediscretized points are calculated, a constant time is added to the coordenates using the function *fromCoords*.
+
+```{r}
+
+trj <- trj3D::fromCoords(pts)
+
+```
+
+This other example uses the state method to compute the trajectory redescretization algorithm. The algorithm stores the length at each step to compute the distance to the next evenly spaced point. The following code cells runs smoothly with synthetic long trajectories.
+
+```{r}
+
+trj <- trj3D::generate_3D(n=25, step_length = 2, angular_errorSd = .8)
+
+par(new=F)
+
+scatter3D(trj$x, trj$y, trj$z,  
+          bty = "g",  type = "b",
+          col = "black", cex = 1.2)
+
+# resample algorithm; 
+
+resampled <- trj3D::resample(trj, 1)
+
+scatter3D(resampled$x, resampled$y, resampled$z,  
+          bty = "g",  type = "b", col = "#FF0000A0", pch = 16,add = TRUE)
+
+legend("topright", c("Original", "Resampled"), col = c("black", "red"), lwd = 2, inset = c(0.01, 0.02))
+
+```
+
+The autocorrelation function, presents the evolution of the angular change. The original and resampled trajectories should have a similar autocorrelation plot.
+
+```{r}
+
+par(mfrow = c(1,2))
+
+corr_org <- trj3D::directionalAutocorrelations(trj)
+
+corr_res <- trj3D::directionalAutocorrelations(resampled)
+
+plot(corr_org)
+
+plot(corr_res)
+
+```
+
