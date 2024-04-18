@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Blog-Page 6 of 6 -sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Blog" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<meta property="og:description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/blog/page6/" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/blog/page6/" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="website" />
+<link rel="prev" href="https://sln-alesteba.github.io/portfolio/portfolio/page5/" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Blog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!","headline":"Blog","url":"https://sln-alesteba.github.io/portfolio/portfolio/blog/page6/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/tags.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/styles.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/demos.css">
+
+    <div class="grid-container_demo">
+
+        <div class="item_demo_1">
+        
+            <!-- <img src="https://img.youtube.com/vi/HO34GNlTT1E/mqdefault.jpg" alt="icon" height="113" width="200"> -->
+
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/cv.PNG"  width= "100%" height="160"alt="icon">
+
+        </div>
+        
+        <div class="itemAA_demo_2">
+
+            <p>
+                My name is Alberto Esteban, I'm from Logroño, La Rioja a small city in northern Spain. 
+                I'm software engineer currently studying a masters in Data Science. 
+                I've always been very curious about coding and I've developed a special interest in computer graphics. 
+                Right now I'm focus on learning new things about machine and deep learning, especially from the data architecture perspective.
+                (because I belive is pretty similar to the rendering engine pipelines I now.)
+            </p>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <p align="center">
+ 
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="button"><i class="fa fa-youtube-play" style="font-size:24px"></i></a>
+                <a href="https://www.instagram.com/s.ln_alesteba/" class="button"><i class="fa fa-instagram" style="font-size:24px"></i></a>
+                <a href="https://github.com/sln-alesteba" class="button"><i class="fa fa-github" style="font-size:24px"></i></a>
+                <a href="https://huggingface.co/" class="button"><i class="fa fa-area-chart" style="font-size:24px"></i></a>
+
+            </p>
+        
+        </div>
+
+    </div>
+
+</div>
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/navigation.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/blog/" class="active">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a><a href="https://sln-alesteba.github.io/portfolio/">About</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <div class="tag-container">
+
+    <div class="option-line">
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=demos';">
+                demos
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="demos" name="demos" value="demos">
+            <label class="chip-label" for="demos">demos</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=procedural';">
+                procedural
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="procedural" name="procedural" value="procedural">
+            <label class="chip-label" for="procedural">procedural</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=generation';">
+                generation
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="generation" name="generation" value="generation">
+            <label class="chip-label" for="generation">generation</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=blog';">
+                blog
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="blog" name="blog" value="blog">
+            <label class="chip-label" for="blog">blog</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=spline';">
+                spline
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="spline" name="spline" value="spline">
+            <label class="chip-label" for="spline">spline</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=lines';">
+                lines
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="lines" name="lines" value="lines">
+            <label class="chip-label" for="lines">lines</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=interpolation';">
+                interpolation
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="interpolation" name="interpolation" value="interpolation">
+            <label class="chip-label" for="interpolation">interpolation</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=bezier';">
+                bezier
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="bezier" name="bezier" value="bezier">
+            <label class="chip-label" for="bezier">bezier</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=audio';">
+                audio
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="audio" name="audio" value="audio">
+            <label class="chip-label" for="audio">audio</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=visualization';">
+                visualization
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="visualization" name="visualization" value="visualization">
+            <label class="chip-label" for="visualization">visualization</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=data';">
+                data
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="data" name="data" value="data">
+            <label class="chip-label" for="data">data</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=jekyll';">
+                jekyll
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="jekyll" name="jekyll" value="jekyll">
+            <label class="chip-label" for="jekyll">jekyll</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=python';">
+                python
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="python" name="python" value="python">
+            <label class="chip-label" for="python">python</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=git';">
+                git
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="git" name="git" value="git">
+            <label class="chip-label" for="git">git</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=integration';">
+                integration
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="integration" name="integration" value="integration">
+            <label class="chip-label" for="integration">integration</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=render';">
+                render
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="render" name="render" value="render">
+            <label class="chip-label" for="render">render</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=openGL';">
+                openGL
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="openGL" name="openGL" value="openGL">
+            <label class="chip-label" for="openGL">openGL</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=graphics';">
+                graphics
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="graphics" name="graphics" value="graphics">
+            <label class="chip-label" for="graphics">graphics</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=rendering';">
+                rendering
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="rendering" name="rendering" value="rendering">
+            <label class="chip-label" for="rendering">rendering</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=architecture';">
+                architecture
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="architecture" name="architecture" value="architecture">
+            <label class="chip-label" for="architecture">architecture</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=pyhton';">
+                pyhton
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="pyhton" name="pyhton" value="pyhton">
+            <label class="chip-label" for="pyhton">pyhton</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geometry';">
+                geometry
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="geometry" name="geometry" value="geometry">
+            <label class="chip-label" for="geometry">geometry</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=data-science';">
+                data-science
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="data-science" name="data-science" value="data-science">
+            <label class="chip-label" for="data-science">data-science</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=algorithms';">
+                algorithms
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="algorithms" name="algorithms" value="algorithms">
+            <label class="chip-label" for="algorithms">algorithms</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=graph';">
+                graph
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="graph" name="graph" value="graph">
+            <label class="chip-label" for="graph">graph</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=iterate';">
+                iterate
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="iterate" name="iterate" value="iterate">
+            <label class="chip-label" for="iterate">iterate</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=jupyter';">
+                jupyter
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="jupyter" name="jupyter" value="jupyter">
+            <label class="chip-label" for="jupyter">jupyter</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=recursive';">
+                recursive
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="recursive" name="recursive" value="recursive">
+            <label class="chip-label" for="recursive">recursive</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=algorithm';">
+                algorithm
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="algorithm" name="algorithm" value="algorithm">
+            <label class="chip-label" for="algorithm">algorithm</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=sofwtare-architecture';">
+                sofwtare-architecture
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="sofwtare-architecture" name="sofwtare-architecture" value="sofwtare-architecture">
+            <label class="chip-label" for="sofwtare-architecture">sofwtare-architecture</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=deep-learning';">
+                deep-learning
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="deep-learning" name="deep-learning" value="deep-learning">
+            <label class="chip-label" for="deep-learning">deep-learning</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=machine-learning';">
+                machine-learning
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="machine-learning" name="machine-learning" value="machine-learning">
+            <label class="chip-label" for="machine-learning">machine-learning</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=parallel';">
+                parallel
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="parallel" name="parallel" value="parallel">
+            <label class="chip-label" for="parallel">parallel</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=image';">
+                image
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="image" name="image" value="image">
+            <label class="chip-label" for="image">image</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=geom';">
+                geom
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="geom" name="geom" value="geom">
+            <label class="chip-label" for="geom">geom</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=curves';">
+                curves
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="curves" name="curves" value="curves">
+            <label class="chip-label" for="curves">curves</label> -->
+
+        
+
+            <button type="button" class = "chip-label"
+                    onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=projects';">
+                projects
+            </button> 
+
+            <!-- <input type="radio" class="chip-input" id="projects" name="projects" value="projects">
+            <label class="chip-label" for="projects">projects</label> -->
+
+        
+        
+    </div>
+
+</div>
+
+<br>
+
+<div class="child">
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/posts/interpolation-spline.html">Interpoaltion in Graphics</a>
+    <p>2021-11-06 08:56:49 +0100</p>
+    <p>What traversing splines looks like? Interpolation in one of the core features of graphics development, you have it almost in every small tool that the game engine contains. Within the spline framework a linear interpolation is used to traverse shapes. Lets see some of the most relevant types of interpolation:...</p>
+</div>
+
+            <br>
+
+    
+
+    <div class="page-nav-wrap">
+
+
+
+    <div class="pagination">
+
+        
+
+            <a href="https://sln-alesteba.github.io/portfolio/blog//page5/">
+                &laquo;
+            </a> 
+
+        
+
+        
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/blog/">
+                    1
+                </a>
+
+            
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/blog/page2">
+                    2
+                </a>
+
+            
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/blog/page3">
+                    3
+                </a>
+
+            
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/blog/page4">
+                    4
+                </a>
+
+            
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/blog/page5">
+                    5
+                </a>
+
+            
+
+            
+            
+                <a href="#" class="active">
+                    6
+                </a>
+
+            
+
+    </div>
+
+
+
+</div>
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+
+    <div class="grid-container-footer">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+    </div>
+</div>
+
+        </div>
+
+    </body>
+
+</html> 
