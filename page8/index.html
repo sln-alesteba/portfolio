@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>About-Page 8 of 8 -sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="About" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<meta property="og:description" content="Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!" />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/page8/" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/page8/" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="website" />
+<link rel="prev" href="https://sln-alesteba.github.io/portfolio/portfolio/page7/" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="About" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Graphics rendering and spline algorithms. Kinematics from the bezier curves by traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!","headline":"About","url":"https://sln-alesteba.github.io/portfolio/portfolio/page8/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/tags.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/styles.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/demos.css">
+
+    <div class="grid-container_demo">
+
+        <div class="item_demo_1">
+        
+            <!-- <img src="https://img.youtube.com/vi/HO34GNlTT1E/mqdefault.jpg" alt="icon" height="113" width="200"> -->
+
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/cv.PNG"  width= "100%" height="160"alt="icon">
+
+        </div>
+        
+        <div class="itemAA_demo_2">
+
+            <p>
+                My name is Alberto Esteban, I'm from Logroño, La Rioja a small city in northern Spain. 
+                I'm software engineer currently studying a masters in Data Science. 
+                I've always been very curious about coding and I've developed a special interest in computer graphics. 
+                Right now I'm focus on learning new things about machine and deep learning, especially from the data architecture perspective.
+                (because I belive is pretty similar to the rendering engine pipelines I now.)
+            </p>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <p align="center">
+ 
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="button"><i class="fa fa-youtube-play" style="font-size:24px"></i></a>
+                <a href="https://www.instagram.com/s.ln_alesteba/" class="button"><i class="fa fa-instagram" style="font-size:24px"></i></a>
+                <a href="https://github.com/sln-alesteba" class="button"><i class="fa fa-github" style="font-size:24px"></i></a>
+                <a href="https://huggingface.co/" class="button"><i class="fa fa-area-chart" style="font-size:24px"></i></a>
+
+            </p>
+        
+        </div>
+
+    </div>
+
+</div>
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/navigation.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a><a href="https://sln-alesteba.github.io/portfolio/">About</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <div class="child">
+
+    <p> 
+        
+        Within the field of computer graphics, I've built different projects and demos. 
+        The elegance of Splines and Bezier Curves have always caught my attention, I enjoy using data structures and recursive algorithms to create them.
+        Currently, I'm learning about data science and machine learning so I can combine the previous knowledge with AI models into modern apps.
+        In my <a href=https://sln-alesteba.github.io/portfolio/about/personal>personal</a> page you can find more about myself and listed below some of the fields I'm interested in:
+    
+    </p>
+
+    <ul>
+        <li> Procedural Content Generation</li> 
+        <li> Rendering Engine Architectures</li> 
+        <li> Design Patterns and General-Software Architecture</li>           
+        <li> Animations and Interpolation Mechanics</li>  
+        <li> Machine & Deep Learning </li> 
+        <li> Generative Grammars </li> 
+    </ul>
+
+    <!-- <p>
+    Listed below are some of the projects (academic and others) that I consider that have provided me with new knowledge.
+    </p> -->
+
+
+    <!-- You can find demo videos in [youtube](https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw/videos), some of the playlist you can check:
+    * [spline-stuff](https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw/videos)   
+    * [endless-procedural](https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw/videos)   
+    * [spline-lab](https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw/videos)   
+
+    This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/) -->
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+
+    <h3>Welcome to the spline-lab !</h3>
+
+    <p>
+        Check out the following <a href="https://youtube.com/playlist?list=PLnQ9Bb3_obbQ_ULwPaLz6DLPPUxc20fHN">playlist</a>  to see what the spline-lab is doing with lines and curves.
+        Some of the listed videos contain motion graphics and animations within the lines framework.
+    </p>
+
+    
+
+    <!-- estoy cribando doble -->
+
+    <div class="scroll-container">
+
+        <!-- 
+
+            <li>
+                <img src="https://img.youtube.com/vi/bO-P0VUkrek/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+        
+
+            <li>
+                <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+        
+
+            <li>
+                <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+        
+
+            <li>
+                <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+        
+
+            <li>
+                <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+        
+
+            <li>
+                <img src="https://img.youtube.com/vi/C86LMpCzRI4/mqdefault.jpg" alt="icon" height="113" width="200">
+            </li>
+
+         -->
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/demos/breath-animation.html">
+                    <img src="https://img.youtube.com/vi/qvJVax574-4/mqdefault.jpg" alt="icon" height="113" width="200">
+                </a>
+
+            <!-- better than li -> clickable images: -->
+
+            
+
+        
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/demos/motion-graphics.html">
+                    <img src="https://img.youtube.com/vi/OeRz6bf5gp8/mqdefault.jpg" alt="icon" height="113" width="200">
+                </a>
+
+            <!-- better than li -> clickable images: -->
+
+            
+
+        
+
+            
+
+                <a href="https://sln-alesteba.github.io/portfolio/demos/demo_reel-AAA.html">
+                    <img src="https://img.youtube.com/vi/ggb8ZFBzjCs/mqdefault.jpg" alt="icon" height="113" width="200">
+                </a>
+
+            <!-- better than li -> clickable images: -->
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+    </div>
+
+</div>
+
+<!-- create this effect:
+
+https://www.w3schools.com/howto/howto_css_image_gallery_scroll.asp -->
+
+    <br>
+
+    <!-- https://stackoverflow.com/questions/33907566/can-you-use-subdirectories-within-jekylls-includes-folder -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/playlist.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+
+    <h3>Procedural Content Generation !</h3>
+
+    <p>
+        Some of the procedural content you find in the <a href="https://youtube.com/playlist?list=PLnQ9Bb3_obbQ_ULwPaLz6DLPPUxc20fHN">playlist</a> target 
+        endless generation within the platforms or terrain 2.5D context.
+        Also there is a bunch demos showing simple algorithms to extend lines using random seed approach.
+    </p>
+
+    
+
+    <div class="scroll-container">
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+        
+
+            
+
+            <a href="https://sln-alesteba.github.io/portfolio/demos/demo_reel-AAA.html">
+                <img src="https://img.youtube.com/vi/ggb8ZFBzjCs/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+
+            
+
+        
+
+            
+
+            <a href="https://sln-alesteba.github.io/portfolio/demos/plain-textures-procedural-terrain.html">
+                <img src="https://img.youtube.com/vi/0mUXEIhxy_I/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+
+            
+
+        
+
+            
+
+            <a href="https://sln-alesteba.github.io/portfolio/demos/endless-procedural-generation.html">
+                <img src="https://img.youtube.com/vi/Y200qbpGYvo/mqdefault.jpg" alt="icon" height="113" width="200">
+            </a>
+
+            
+
+        
+
+    </div>
+
+</div>
+
+    <!-- 
+
+        <iframe width="213.3" height="160" 
+                src="https://www.youtube.com/embed/bO-P0VUkrek" 
+                title="Title 01" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+
+    
+
+        <iframe width="213.3" height="160" 
+                src="https://www.youtube.com/embed/C86LMpCzRI4" 
+                title="Title 02" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+
+    
+
+        <iframe width="213.3" height="160" 
+                src="https://www.youtube.com/embed/C86LMpCzRI4" 
+                title="Title 03" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+
+     -->
+
+</div>
+
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+
+    <div class="grid-container-footer">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+    </div>
+</div>
+
+        </div>
+
+    </body>
+
+</html> 

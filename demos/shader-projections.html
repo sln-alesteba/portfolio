@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+      
+        <meta charset=utf-8>
+
+        <!-- check the post for the entire code https://waloncab.github.io/s.ln_blog/posts/jekyll-build-config.html -->
+
+        <title>Fragment Shader Projections - GLSL-sln-alesteba:blog </title>
+          
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Fragment Shader Projections - GLSL" />
+<meta name="author" content="alesteba" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Perlin noise animation with a procedural fragment shader." />
+<meta property="og:description" content="Perlin noise animation with a procedural fragment shader." />
+<link rel="canonical" href="https://sln-alesteba.github.io/portfolio/portfolio/demos/shader-projections.html" />
+<meta property="og:url" content="https://sln-alesteba.github.io/portfolio/portfolio/demos/shader-projections.html" />
+<meta property="og:site_name" content="sln-alesteba:blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-22T16:20:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fragment Shader Projections - GLSL" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"alesteba"},"dateModified":"2022-07-22T16:20:00+02:00","datePublished":"2022-07-22T16:20:00+02:00","description":"Perlin noise animation with a procedural fragment shader.","headline":"Fragment Shader Projections - GLSL","mainEntityOfPage":{"@type":"WebPage","@id":"https://sln-alesteba.github.io/portfolio/portfolio/demos/shader-projections.html"},"url":"https://sln-alesteba.github.io/portfolio/portfolio/demos/shader-projections.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/body.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/tags.css">
+        <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/styles.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP7FZ2055V"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GP7FZ2055V');
+        </script>
+
+        <!-- FAVICONS -->
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://sln-alesteba.github.io/portfolio/assets/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://sln-alesteba.github.io/portfolio/assets/fav/favicon-16x16.png">
+        <link rel="manifest" href="https://sln-alesteba.github.io/portfolio/assets/fav/site.webmanifest">
+        <link rel="mask-icon" href="https://sln-alesteba.github.io/portfolio/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <div class="header">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/demos.css">
+
+    <div class="grid-container_demo">
+
+        <div class="item_demo_1">
+        
+            <!-- <img src="https://img.youtube.com/vi/HO34GNlTT1E/mqdefault.jpg" alt="icon" height="113" width="200"> -->
+
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/cv.PNG"  width= "100%" height="160"alt="icon">
+
+        </div>
+        
+        <div class="itemAA_demo_2">
+
+            <p>
+                My name is Alberto Esteban, I'm from Logroño, La Rioja a small city in northern Spain. 
+                I'm software engineer currently studying a masters in Data Science. 
+                I've always been very curious about coding and I've developed a special interest in computer graphics. 
+                Right now I'm focus on learning new things about machine and deep learning, especially from the data architecture perspective.
+                (because I belive is pretty similar to the rendering engine pipelines I now.)
+            </p>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <p align="center">
+ 
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="button"><i class="fa fa-youtube-play" style="font-size:24px"></i></a>
+                <a href="https://www.instagram.com/s.ln_alesteba/" class="button"><i class="fa fa-instagram" style="font-size:24px"></i></a>
+                <a href="https://github.com/sln-alesteba" class="button"><i class="fa fa-github" style="font-size:24px"></i></a>
+                <a href="https://huggingface.co/" class="button"><i class="fa fa-area-chart" style="font-size:24px"></i></a>
+
+            </p>
+        
+        </div>
+
+    </div>
+
+</div>
+
+            <br>
+            
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/navigation.css">
+
+<!-- https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+
+<div class="topnav" id="myTopnav">
+
+    <!-- <a href="https://sln-alesteba.github.io/portfolio/index.html" class="active">Blog</a>
+    <a href="https://sln-alesteba.github.io/portfolio/about">About</a>
+    <a href="https://sln-alesteba.github.io/portfolio/demos">Demos</a> -->
+
+    <!-- <ul> -->
+
+        
+        
+        <a href="https://sln-alesteba.github.io/portfolio/blog/">Blog</a><a href="https://sln-alesteba.github.io/portfolio/demos/" class="active">Demos</a><a href="https://sln-alesteba.github.io/portfolio/projects/">Projects</a><a href="https://sln-alesteba.github.io/portfolio/">About</a>
+
+    <!-- </ul> -->
+
+    <div class="search-container">
+
+        
+        <!-- <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form> -->
+
+        <form action='https://sln-alesteba.github.io/portfolio/search.html' method="get">
+            <input type="text" id="search-box" name="query">
+            <!-- <input type="submit" value="search"> -->
+            <button type="submit" value="search">Submit</button>
+        </form>
+    </div>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+</div>
+
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+            <br>
+
+            <!-- SUPPORT FOR JUPYTER NOTEBOOKS -->
+
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/notebook.css">
+<link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/colorful.css">
+
+<!-- SUPPORT FOR LATEX -->
+
+<script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+type="text/javascript">
+</script>
+
+<div class="tag-container">
+
+    <h1>Fragment Shader Projections - GLSL</h1>
+
+    <hr>
+
+    <div class="option-line">
+    
+        
+
+        <button type="button" class = "chip-label"
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=demos';">
+                demos
+        </button> 
+
+            <!-- <input type="radio" class="chip-input" id="demos" name="demos" value="demos">
+            <label class="chip-label" for="demos">demos</label> -->
+
+        
+
+        <button type="button" class = "chip-label"
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=visualization';">
+                visualization
+        </button> 
+
+            <!-- <input type="radio" class="chip-input" id="visualization" name="visualization" value="visualization">
+            <label class="chip-label" for="visualization">visualization</label> -->
+
+        
+
+        <button type="button" class = "chip-label"
+                onclick="window.location.href='https://sln-alesteba.github.io/portfolio/search.html?query=openGL';">
+                openGL
+        </button> 
+
+            <!-- <input type="radio" class="chip-input" id="openGL" name="openGL" value="openGL">
+            <label class="chip-label" for="openGL">openGL</label> -->
+
+        
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="child">
+
+    <p>Perlin noise animation with a procedural fragment shader.</p>
+
+
+
+<div class="your-centered-div">
+
+    <!-- // page works -->
+
+    <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/zkz0aiyoClA" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+
+</div>
+
+    <br>
+
+    <!-- INCLUDE spline / procedural -->
+
+    
+
+    <br>
+
+    
+
+    <br>
+
+    <!-- RELATED POSTS -->
+
+    
+
+        
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/shader-projections.html">Fragment Shader Projections - GLSL</a>
+    <p>2022-07-22 16:20:00 +0200</p>
+    <p>Perlin noise animation with a procedural fragment shader.
+
+</p>
+</div>
+                
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/openGL-transformations.html">Spline Transformations - Rendering OpenGL</a>
+    <p>2022-07-22 16:20:00 +0200</p>
+    <p>Rendering a spline shape with a dedicated graphics engine written in Python. The scene graph architecture allows to create a custom spline-shape geometry and then locally transform the entire object with the disered operations. All matrix and vector operations are abstracted by the framework, allowing to translate, rotate and scale...</p>
+</div>
+                
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-003.html">Audio Visualization sp.002</a>
+    <p>2021-12-05 10:44:49 +0100</p>
+    <p>Piano key strokes are more fun when you visualize in some form or another the sound produced.
+Closed spline shape rendered along this short track, notice the slow-fast waves the contour forms.
+</p>
+</div>
+                
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-002.html">Audio Visualization sp.002</a>
+    <p>2021-12-04 10:44:49 +0100</p>
+    <p>Everything you see in the video is generated at run-time. This time the audio visualizer uses 
+not just a simple mesh but a line renderer to distinguish the contour of the shape.
+The drums make the shape generate aggressive but very pleasant curves.
+</p>
+</div>
+                
+            <br>
+
+    
+
+            <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/post.css">
+
+<div class="post">
+    <a href="https://sln-alesteba.github.io/portfolio/demos/audio-visualization-001.html">Audio Visualization sp.001</a>
+    <p>2021-12-03 10:44:49 +0100</p>
+    <p>How frequency bands can be used to make dynamic meshes. 
+The shape is modified at real-time by a radial disposition of those bands.
+
+</p>
+</div>
+                
+            <br>
+
+    
+
+</div>
+
+            <br>
+
+            <div class="footer">
+
+    <link rel="stylesheet" href="https://sln-alesteba.github.io/portfolio/assets/css/rotate.css">
+
+    <div class="grid-container-footer">
+
+        <div class="item1" id="rotator">
+            <img src="https://sln-alesteba.github.io/portfolio/assets/img/fire_buble.png" alt="Walon Cab" width="128" height="128" align="center" class="rotate">
+        </div>
+
+        <div class="item2">
+            <p class="right">Graphics rendering and spline algorithms. Kinematics from the bezier curves by  traversing generated paths, using some data science techniques and algorithms to enhance the process. Stay tunned for the Spline Lab!</p>
+
+            <p align="center">
+                &copy; 2023 alesteba
+            </p>
+        </div>
+
+        <div class="item3">
+            <p>
+                Check out some of the resources out there! You'll find graphics, 
+                splines, kinematics and code !
+            </p>
+
+            <p align="center">
+                <a href="https://www.youtube.com/channel/UCJX8AUDFcQJMjY1zRivvZqw" class="fa fa-youtube"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/sln-alesteba/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/WalonCab" class="fa fa-twitter"></a>
+            </p>
+        </div>  
+    </div>
+</div>
+
+        </div>
+
+    </body>
+
+</html> 
